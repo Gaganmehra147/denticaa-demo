@@ -1,0 +1,709 @@
+/* ==========================================================================
+   DENTICAA DENTAL CLINIC — ADVANCED MASTER RESPONSIVE ADAPTATION
+   Pixel-Perfect Responsiveness: Desktops, Tablets, Phablets & Mobile Phones
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. LAPTOPS & SMALL DESKTOPS (<= 1200px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 1200px) {
+  .container {
+    max-width: 100%;
+    padding: 0 32px;
+  }
+
+  .hero-grid {
+    gap: 40px;
+  }
+
+  .hero-title {
+    font-size: 2.85rem;
+  }
+
+  .doctor-spotlight-card {
+    gap: 36px;
+    padding: 36px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   2. TABLETS & IPADS (<= 1024px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .container {
+    padding: 0 24px;
+  }
+
+  .hero-grid,
+  .doctor-spotlight-card,
+  .location-grid,
+  .about-grid {
+    grid-template-columns: 1fr !important;
+    gap: 40px;
+  }
+
+  .services-card-grid,
+  .transformations-grid,
+  .reviews-grid,
+  .trust-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+  }
+
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 36px;
+  }
+
+  .doctor-portrait-img {
+    height: 420px;
+  }
+
+  .crm-stats-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .tr-cms-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   3. MOBILE PHONES & PHABLETS (<= 768px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  /* Prevent any horizontal overflow glitches */
+  html, body {
+    overflow-x: hidden !important;
+    width: 100%;
+    position: relative;
+  }
+
+  .container {
+    padding: 0 18px;
+  }
+
+  .section-padding {
+    padding: 60px 0;
+  }
+
+  .section-title-wrap {
+    margin-bottom: 36px;
+  }
+
+  .section-title {
+    font-size: clamp(1.75rem, 5vw, 2.15rem);
+    margin-bottom: 12px;
+  }
+
+  .section-subtitle {
+    font-size: 0.95rem;
+    line-height: 1.65;
+  }
+
+  /* --- Top Utility Bar --- */
+  .top-bar {
+    display: none;
+  }
+
+  /* --- Navbar & Mobile Drawer --- */
+  .navbar {
+    position: sticky;
+    top: 0;
+  }
+
+  .nav-container {
+    min-height: 76px;
+    padding: 6px 0;
+  }
+
+  .brand-logo-img {
+    height: 85px;
+    max-width: 155px;
+  }
+
+  .brand-name {
+    font-size: 1.4rem;
+  }
+
+  .brand-tagline {
+    font-size: 0.65rem;
+  }
+
+  .mobile-toggle {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    background: var(--bg-card);
+    border: 1.5px solid var(--border-subtle);
+    color: var(--text-dark);
+    font-size: 1.25rem;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: var(--transition);
+    flex-shrink: 0;
+  }
+
+  .mobile-toggle:hover,
+  .mobile-toggle:active {
+    background: var(--gold-subtle);
+    border-color: var(--gold-primary);
+    color: var(--gold-dark);
+  }
+
+  /* Warm Luxury Mobile Drawer */
+  .nav-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: rgba(250, 249, 247, 0.98);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    flex-direction: column;
+    padding: 20px 24px;
+    border-top: 1px solid var(--border-subtle);
+    border-bottom: 2px solid var(--gold-primary);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.16);
+    display: none;
+    gap: 4px;
+    align-items: stretch;
+    z-index: 1000;
+  }
+
+  .nav-menu.active {
+    display: flex !important;
+    animation: drawerSlideDown 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  @keyframes drawerSlideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .nav-menu li {
+    width: 100%;
+  }
+
+  .nav-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    color: var(--text-dark) !important;
+    font-size: 1.02rem;
+    font-weight: 700;
+    padding: 12px 6px;
+    border-bottom: 1px solid var(--border-light);
+  }
+
+  .nav-link:hover,
+  .nav-link.active {
+    color: var(--gold-dark) !important;
+    padding-left: 10px;
+  }
+
+  .nav-link::after {
+    display: none;
+  }
+
+  .nav-actions .nav-status-badge,
+  .nav-actions .nav-crm-btn {
+    display: none !important;
+  }
+
+  /* --- Hero Section --- */
+  .hero-section {
+    padding: 40px 0 60px 0;
+  }
+
+  .hero-title {
+    font-size: clamp(1.95rem, 5.5vw, 2.5rem);
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+    line-height: 1.68;
+    margin-bottom: 24px;
+  }
+
+  .hero-cta-group {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    margin-bottom: 22px;
+  }
+
+  .hero-cta-group .btn {
+    width: 100%;
+    justify-content: center;
+    padding: 14px 24px;
+  }
+
+  .hero-quick-contact {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .hero-image-wrap {
+    margin-top: 10px;
+    position: relative;
+    overflow: visible;
+  }
+
+  .hero-clinic-photo {
+    height: 280px;
+    border-radius: var(--radius-md);
+  }
+
+  /* Floating badges bounded within screen bounds */
+  .hero-badge {
+    padding: 8px 12px;
+    gap: 8px;
+    border-radius: var(--radius-sm);
+  }
+
+  .hero-badge-icon {
+    width: 32px;
+    height: 32px;
+    font-size: 0.95rem;
+  }
+
+  .hero-badge-title {
+    font-size: 0.82rem;
+  }
+
+  .hero-badge-sub {
+    font-size: 0.7rem;
+  }
+
+  .hero-badge--top {
+    top: -10px;
+    left: 4px;
+  }
+
+  .hero-badge--bottom {
+    bottom: -10px;
+    right: 4px;
+  }
+
+  /* --- Verified Trust Bar --- */
+  .trust-bar {
+    padding: 22px 0;
+  }
+
+  .trust-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .trust-item {
+    background: #FFFFFF;
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-md);
+    padding: 12px 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+  }
+
+  /* --- Doctor Spotlight Section --- */
+  .doctor-switch-tabs {
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+    margin-bottom: 28px;
+  }
+
+  .doctor-tab-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 12px 18px;
+    font-size: 0.88rem;
+  }
+
+  .doctor-spotlight-card {
+    padding: 22px 18px !important;
+    border-radius: var(--radius-lg);
+    gap: 26px;
+  }
+
+  .doctor-portrait-img {
+    height: 320px;
+  }
+
+  .doctor-nameplate-overlay {
+    padding: 12px 14px;
+    bottom: 12px;
+    left: 12px;
+    right: 12px;
+  }
+
+  .doctor-nameplate-title {
+    font-size: 1.18rem;
+  }
+
+  .doctor-nameplate-sub {
+    font-size: 0.76rem;
+  }
+
+  .doctor-main-headline {
+    font-size: clamp(1.6rem, 4.5vw, 2rem);
+    margin-bottom: 14px;
+  }
+
+  .doctor-italic-quote {
+    font-size: 0.98rem;
+    padding-left: 14px;
+    margin-bottom: 18px;
+  }
+
+  .doctor-bio-text {
+    font-size: 0.92rem;
+    line-height: 1.7;
+    margin-bottom: 18px;
+  }
+
+  .doctor-feature-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+
+  .doctor-feature-pill {
+    padding: 10px 14px;
+    font-size: 0.84rem;
+  }
+
+  .doctor-actions-row {
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+  }
+
+  .doctor-actions-row .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* --- Services Filter & Cards --- */
+  .services-filter-bar {
+    justify-content: flex-start;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding: 0 4px 12px 4px;
+    margin-bottom: 28px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+  }
+
+  .services-filter-bar::-webkit-scrollbar {
+    height: 4px;
+  }
+
+  .svc-filter-btn {
+    flex-shrink: 0;
+    white-space: nowrap;
+    padding: 8px 16px;
+    font-size: 0.84rem;
+  }
+
+  .services-card-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .svc-card-img-wrap {
+    height: 190px;
+  }
+
+  .svc-card-body {
+    padding: 20px;
+  }
+
+  .svc-card-title {
+    font-size: 1.2rem;
+  }
+
+  /* --- Smile Transformations (Before & After) --- */
+  .transformations-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .ba-slider-wrapper {
+    height: 240px;
+  }
+
+  .ba-card-body {
+    padding: 20px;
+  }
+
+  /* --- Reviews & Google Integration --- */
+  .reviews-summary-bar {
+    flex-direction: column;
+    text-align: center;
+    gap: 8px;
+    padding: 16px 20px;
+    max-width: 100%;
+    border-radius: var(--radius-lg);
+    margin-bottom: 28px;
+  }
+
+  .reviews-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    margin-bottom: 28px;
+  }
+
+  .review-card {
+    padding: 20px;
+  }
+
+  .google-cta-box {
+    padding: 28px 18px;
+    border-radius: var(--radius-lg);
+  }
+
+  .google-cta-box h3 {
+    font-size: 1.35rem;
+  }
+
+  .google-cta-box p {
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+  }
+
+  .google-cta-box div {
+    flex-direction: column;
+  }
+
+  .google-cta-box .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* --- Location & NAP Card --- */
+  .location-grid {
+    grid-template-columns: 1fr !important;
+    gap: 24px;
+  }
+
+  .nap-card {
+    padding: 24px 18px;
+    border-radius: var(--radius-lg);
+  }
+
+  .nap-title {
+    font-size: 1.45rem;
+  }
+
+  .nap-phones {
+    gap: 10px;
+    margin-bottom: 22px;
+  }
+
+  .map-container {
+    min-height: 280px;
+    border-radius: var(--radius-lg);
+  }
+
+  .nap-card div:last-child {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .nap-card .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* --- Appointment Booking Form --- */
+  .booking-wrapper {
+    padding: 24px 16px;
+    border-radius: var(--radius-lg);
+  }
+
+  .form-row {
+    grid-template-columns: 1fr !important;
+    gap: 0;
+  }
+
+  /* Prevent auto-zooming on iOS Safari */
+  .form-control {
+    font-size: 16px !important;
+    padding: 12px 14px;
+  }
+
+  /* --- Subpages Authority Cards --- */
+  .about-grid {
+    grid-template-columns: 1fr !important;
+    gap: 28px;
+  }
+
+  .doctor-authority-card {
+    padding: 24px 18px;
+    border-radius: var(--radius-lg);
+  }
+
+  .about-highlight-card {
+    padding: 22px 18px;
+    border-radius: var(--radius-lg);
+  }
+
+  /* --- Footer --- */
+  .footer {
+    padding: 50px 0 24px 0;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr !important;
+    gap: 30px;
+    margin-bottom: 36px;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+    gap: 14px;
+  }
+
+  .footer-bottom div {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  /* --- Floating Action Dock --- */
+  .floating-action-dock {
+    bottom: 16px;
+    right: 16px;
+    gap: 10px;
+    z-index: 999;
+  }
+
+  .floating-action-btn {
+    width: 48px;
+    height: 48px;
+    font-size: 1.25rem;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+  }
+
+  .floating-action-btn::before {
+    display: none !important;
+  }
+
+  /* --- Multilingual AI Dental Chatbot Modal (Responsive Bounded Box) --- */
+  .chatbot-modal {
+    position: fixed !important;
+    left: 12px !important;
+    right: 12px !important;
+    bottom: 76px !important;
+    width: calc(100vw - 24px) !important;
+    max-width: 100% !important;
+    height: 72vh !important;
+    max-height: calc(100vh - 90px) !important;
+    border-radius: var(--radius-lg) !important;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.45) !important;
+  }
+
+  /* --- Staff CRM Dashboard on Mobile --- */
+  .crm-header-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .crm-nav-tabs {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 10px;
+    width: 100%;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .crm-tab-btn {
+    flex-shrink: 0;
+    white-space: nowrap;
+    padding: 8px 16px;
+    font-size: 0.84rem;
+  }
+
+  .crm-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .crm-stat-card {
+    padding: 14px;
+  }
+
+  .crm-stat-num {
+    font-size: 1.35rem;
+  }
+
+  .tr-cms-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .crm-modal-content {
+    max-width: 100%;
+    margin: 10px;
+    border-radius: var(--radius-lg);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   4. SMALL SCREEN PHONES (<= 480px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 480px) {
+  .container {
+    padding: 0 14px;
+  }
+
+  .section-padding {
+    padding: 48px 0;
+  }
+
+  .brand-logo-img {
+    height: 72px;
+    max-width: 135px;
+  }
+
+  .brand-name {
+    font-size: 1.25rem;
+  }
+
+  .brand-tagline {
+    font-size: 0.6rem;
+  }
+
+  .hero-title {
+    font-size: 1.85rem;
+  }
+
+  .hero-clinic-photo {
+    height: 250px;
+  }
+
+  .doctor-portrait-img {
+    height: 290px;
+  }
+
+  .crm-stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Hide book consultation top button in very small phone navbar to give room to logo & toggle */
+  .navbar .nav-actions .btn-sm {
+    display: none;
+  }
+}

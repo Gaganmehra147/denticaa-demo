@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Denticaa Dental CRM | Staff Portal & Transformations CMS</title>
+  
+  <!-- Icons & Fonts -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Core Theme Styles -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+
+  <style>
+    /* Dedicated CRM Portal & Staff Login Styling */
+    .crm-body {
+      background-color: var(--bg-primary);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* 1. AUTH / PASSWORD LOCK SCREEN */
+    .auth-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 20, 28, 0.92);
+      backdrop-filter: blur(12px);
+      z-index: 10000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .auth-card {
+      background: var(--bg-card);
+      border: 1.5px solid var(--gold-border);
+      border-radius: var(--radius-xl);
+      padding: 44px;
+      max-width: 440px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+      animation: modalFadeIn 0.3s ease;
+    }
+
+    .auth-logo {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      margin: 0 auto 16px auto;
+      border: 2px solid var(--gold-primary);
+      box-shadow: 0 4px 16px rgba(199, 167, 106, 0.3);
+      object-fit: cover;
+    }
+
+    .auth-title {
+      font-family: var(--font-serif);
+      font-size: 1.6rem;
+      color: var(--text-dark);
+      margin-bottom: 6px;
+    }
+
+    .auth-subtitle {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+
+    .auth-pass-wrap {
+      position: relative;
+      margin-bottom: 18px;
+    }
+
+    .auth-input {
+      width: 100%;
+      padding: 14px 44px 14px 16px;
+      border-radius: var(--radius-full);
+      border: 1.5px solid var(--border-subtle);
+      font-family: var(--font-sans);
+      font-size: 0.95rem;
+      text-align: center;
+      letter-spacing: 2px;
+      background: #FFFFFF;
+      color: var(--text-dark);
+    }
+
+    .auth-input:focus {
+      outline: none;
+      border-color: var(--gold-primary);
+      box-shadow: 0 0 0 4px var(--gold-subtle);
+    }
+
+    .auth-eye-btn {
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+
+    .auth-error {
+      color: #E11D48;
+      font-size: 0.82rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+      display: none;
+    }
+
+    /* 2. CRM MAIN APP */
+    .crm-header {
+      background: var(--bg-card);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 14px 0;
+      box-shadow: var(--shadow-subtle);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .crm-header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .crm-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .crm-brand-img {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1.5px solid var(--gold-primary);
+    }
+
+    .crm-badge-portal {
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: var(--gold-dark);
+      background: var(--gold-subtle);
+      border: 1px solid var(--gold-border);
+      padding: 3px 10px;
+      border-radius: var(--radius-full);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* Tab Switcher */
+    .crm-nav-tabs {
+      display: flex;
+      gap: 10px;
+      margin: 24px 0 20px 0;
+      border-bottom: 1.5px solid var(--border-subtle);
+      padding-bottom: 12px;
+    }
+
+    .crm-tab-btn {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      padding: 10px 22px;
+      border-radius: var(--radius-full);
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: var(--transition);
+    }
+
+    .crm-tab-btn:hover {
+      color: var(--text-dark);
+      border-color: var(--gold-border);
+    }
+
+    .crm-tab-btn.active {
+      background: var(--text-dark);
+      color: #FFFFFF;
+      border-color: var(--text-dark);
+    }
+
+    /* Stats Grid */
+    .crm-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 18px;
+      margin-bottom: 28px;
+    }
+
+    .crm-stat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      box-shadow: var(--shadow-card);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      transition: var(--transition);
+    }
+
+    .crm-stat-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-hover);
+      border-color: var(--gold-border);
+    }
+
+    .crm-stat-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .icon-total { background: rgba(26, 31, 40, 0.08); color: var(--text-dark); }
+    .icon-new { background: rgba(225, 29, 72, 0.12); color: #E11D48; }
+    .icon-confirmed { background: rgba(5, 150, 105, 0.12); color: #059669; }
+    .icon-bot { background: rgba(199, 167, 106, 0.15); color: var(--gold-dark); }
+    .icon-doctors { background: rgba(59, 130, 246, 0.12); color: #2563EB; }
+
+    .crm-stat-num {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--text-dark);
+      line-height: 1;
+      margin-bottom: 3px;
+    }
+
+    .crm-stat-label {
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* Main Container & Table Card */
+    .crm-main-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-xl);
+      padding: 26px;
+      box-shadow: var(--shadow-card);
+      margin-bottom: 48px;
+    }
+
+    /* Filter bar */
+    .crm-filter-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .crm-search-box {
+      position: relative;
+      flex: 1;
+      min-width: 260px;
+      max-width: 400px;
+    }
+
+    .crm-search-box i {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+    }
+
+    .crm-search-input {
+      width: 100%;
+      padding: 10px 14px 10px 38px;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--border-subtle);
+      background: #FFFFFF;
+      font-family: var(--font-sans);
+      font-size: 0.88rem;
+      color: var(--text-dark);
+    }
+
+    .crm-filter-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .crm-select {
+      padding: 8px 14px;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--border-subtle);
+      background: #FFFFFF;
+      color: var(--text-dark);
+      font-size: 0.84rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    /* Table */
+    .crm-table-wrap {
+      overflow-x: auto;
+    }
+
+    .crm-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.88rem;
+    }
+
+    .crm-table th {
+      background: var(--bg-secondary);
+      color: var(--text-dark);
+      font-weight: 700;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      padding: 12px 14px;
+      border-bottom: 1.5px solid var(--border-subtle);
+      white-space: nowrap;
+    }
+
+    .crm-table td {
+      padding: 14px;
+      border-bottom: 1px solid var(--border-light);
+      color: var(--text-dark);
+      vertical-align: middle;
+    }
+
+    .crm-table tr:hover td {
+      background: rgba(199, 167, 106, 0.04);
+    }
+
+    .patient-name-text {
+      font-weight: 700;
+      color: var(--text-dark);
+      font-size: 0.94rem;
+    }
+
+    .patient-meta-text {
+      font-size: 0.74rem;
+      color: var(--text-muted);
+    }
+
+    .source-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: var(--radius-full);
+      width: fit-content;
+    }
+
+    .source-form { background: rgba(26, 31, 40, 0.08); color: var(--text-dark); }
+    .source-bot { background: rgba(199, 167, 106, 0.18); color: var(--gold-dark); border: 1px solid var(--gold-border); }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 10px;
+      border-radius: var(--radius-full);
+      font-size: 0.74rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+    }
+
+    .status-new { background: #FFE4E6; color: #E11D48; }
+    .status-contacted { background: #FEF3C7; color: #D97706; }
+    .status-confirmed { background: #D1FAE5; color: #059669; }
+    .status-completed { background: #E0E7FF; color: #4338CA; }
+    .status-cancelled { background: #F1F5F9; color: #64748B; }
+
+    .table-action-btn {
+      width: 30px;
+      height: 30px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-subtle);
+      background: #FFFFFF;
+      color: var(--text-dark);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: var(--transition);
+      text-decoration: none;
+      font-size: 0.8rem;
+    }
+
+    .table-action-btn:hover { background: var(--text-dark); color: #FFFFFF; }
+    .btn-wa-action:hover { background: #25D366 !important; border-color: #25D366 !important; color: #FFFFFF !important; }
+    .btn-del-action:hover { background: #E11D48 !important; border-color: #E11D48 !important; color: #FFFFFF !important; }
+
+    /* 3. TRANSFORMATIONS CMS GRID */
+    .tr-cms-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .tr-cms-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .tr-cms-img-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      height: 180px;
+      background: #000;
+      position: relative;
+    }
+
+    .tr-cms-img-pair img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .tr-cms-img-label {
+      position: absolute;
+      bottom: 8px;
+      font-size: 0.65rem;
+      font-weight: 800;
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: #fff;
+    }
+
+    .lbl-before { left: 8px; background: #DC2626; }
+    .lbl-after { right: 8px; background: #059669; }
+
+    .tr-cms-body {
+      padding: 18px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    /* Modal styles */
+    .crm-modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 20, 28, 0.7);
+      backdrop-filter: blur(8px);
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .crm-modal-backdrop.active {
+      display: flex;
+      animation: modalFadeIn 0.3s ease;
+    }
+
+    .crm-modal-content {
+      background: var(--bg-card);
+      border: 1.5px solid var(--gold-border);
+      border-radius: var(--radius-xl);
+      max-width: 650px;
+      width: 100%;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow-hover);
+      overflow: hidden;
+    }
+
+    .crm-modal-header {
+      padding: 18px 24px;
+      background: var(--bg-secondary);
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .crm-modal-body {
+      padding: 24px;
+      overflow-y: auto;
+      flex: 1;
+    }
+
+    .crm-modal-footer {
+      padding: 16px 24px;
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 12px;
+    }
+
+    .chat-transcript-box {
+      background: #FFFFFF;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 14px;
+      max-height: 220px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .transcript-bubble {
+      padding: 8px 12px;
+      border-radius: var(--radius-md);
+      font-size: 0.84rem;
+      line-height: 1.45;
+      max-width: 85%;
+    }
+
+    .transcript-user { background: #F1F5F9; color: var(--text-dark); align-self: flex-start; }
+    .transcript-model { background: var(--gold-subtle); border: 1px solid var(--gold-border); color: var(--text-dark); align-self: flex-end; }
+  </style>
+</head>
+<body class="crm-body">
+
+  <!-- 1. PASSWORD AUTHENTICATION SCREEN (Password: denticaa123) -->
+  <div class="auth-overlay" id="authOverlay">
+    <div class="auth-card">
+      <img src="images/denticaa-logo.png" alt="Denticaa Dental Care Logo" class="auth-logo">
+      <h2 class="auth-title">Staff Portal & CRM</h2>
+      <p class="auth-subtitle">Enter clinic staff password to access patient inquiries & CMS</p>
+
+      <form id="authForm">
+        <div class="auth-pass-wrap">
+          <input type="password" id="authPasswordInput" class="auth-input" placeholder="Enter Password" autocomplete="current-password" required>
+          <button type="button" class="auth-eye-btn" id="authToggleEye"><i class="fa-regular fa-eye"></i></button>
+        </div>
+        <div class="auth-error" id="authErrorMsg">⚠️ Incorrect password. Please try again.</div>
+        <button type="submit" class="btn btn-gold btn-lg" style="width: 100%;">
+          <i class="fa-solid fa-lock-open"></i> Unlock CRM Portal
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 2. PROTECTED CRM HEADER -->
+  <header class="crm-header">
+    <div class="container">
+      <div class="crm-header-inner">
+        <!-- Logo & Title -->
+        <a href="index.html" class="crm-brand">
+          <img src="images/denticaa-logo.png" alt="Denticaa Logo" class="crm-brand-img">
+          <div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span class="brand-name" style="font-size: 1.35rem;">DENTICAA</span>
+              <span class="crm-badge-portal">PORTAL</span>
+            </div>
+            <p style="font-size: 0.72rem; color: var(--text-muted); font-weight: 600;">Wright Town, Jabalpur • Patient CRM & CMS</p>
+          </div>
+        </a>
+
+        <!-- Controls -->
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <a href="index.html" class="btn btn-outline btn-sm">
+            <i class="fa-solid fa-globe"></i> View Website
+          </a>
+          <button class="btn btn-dark btn-sm" id="btnLogoutCRM" title="Logout">
+            <i class="fa-solid fa-right-from-bracket"></i> Lock
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- 3. MAIN PORTAL CONTAINER -->
+  <main class="container" style="flex: 1;">
+    
+    <!-- Tab Switcher -->
+    <div class="crm-nav-tabs">
+      <button class="crm-tab-btn active" id="tabBtnLeads" onclick="switchCRMTab('leads')">
+        <i class="fa-solid fa-users"></i> Patient Leads & Inquiries
+      </button>
+      <button class="crm-tab-btn" id="tabBtnTransformations" onclick="switchCRMTab('transformations')">
+        <i class="fa-solid fa-wand-magic-sparkles"></i> Smile Transformations Manager
+      </button>
+    </div>
+
+    <!-- TAB 1: PATIENT LEADS & INQUIRIES -->
+    <section id="crmTabLeads">
+      <!-- KPI Stats -->
+      <div class="crm-stats-grid">
+        <div class="crm-stat-card">
+          <div class="crm-stat-icon icon-total"><i class="fa-solid fa-users"></i></div>
+          <div>
+            <div class="crm-stat-num" id="statTotalLeads">0</div>
+            <div class="crm-stat-label">Total Inquiries</div>
+          </div>
+        </div>
+
+        <div class="crm-stat-card">
+          <div class="crm-stat-icon icon-new"><i class="fa-solid fa-bell"></i></div>
+          <div>
+            <div class="crm-stat-num" id="statNewLeads">0</div>
+            <div class="crm-stat-label">New / Pending</div>
+          </div>
+        </div>
+
+        <div class="crm-stat-card">
+          <div class="crm-stat-icon icon-confirmed"><i class="fa-solid fa-calendar-check"></i></div>
+          <div>
+            <div class="crm-stat-num" id="statConfirmedLeads">0</div>
+            <div class="crm-stat-label">Confirmed Visits</div>
+          </div>
+        </div>
+
+        <div class="crm-stat-card">
+          <div class="crm-stat-icon icon-bot"><i class="fa-solid fa-robot"></i></div>
+          <div>
+            <div class="crm-stat-num" id="statBotLeads">0</div>
+            <div class="crm-stat-label">AI Chatbot Leads</div>
+          </div>
+        </div>
+
+        <div class="crm-stat-card">
+          <div class="crm-stat-icon icon-doctors"><i class="fa-solid fa-user-doctor"></i></div>
+          <div>
+            <div class="crm-stat-num" id="statDoctorSplit">0/0</div>
+            <div class="crm-stat-label">Dr. Kapil / Dr. Anmoll</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Table Card -->
+      <div class="crm-main-card">
+        <div class="crm-filter-bar">
+          <div class="crm-search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="crmSearchInput" class="crm-search-input" placeholder="Search by name, phone, age, treatment...">
+          </div>
+
+          <div class="crm-filter-group">
+            <select id="crmFilterType" class="crm-select">
+              <option value="all">All Sources</option>
+              <option value="form">Website Form</option>
+              <option value="chatbot">AI Chatbot</option>
+            </select>
+
+            <select id="crmFilterDoctor" class="crm-select">
+              <option value="all">All Doctors</option>
+              <option value="Kapil">Dr. Kapil Jain</option>
+              <option value="Anmoll">Dr. Mrs Anmoll Jain</option>
+            </select>
+
+            <select id="crmFilterStatus" class="crm-select">
+              <option value="all">All Statuses</option>
+              <option value="New">New</option>
+              <option value="Contacted">Contacted</option>
+              <option value="Confirmed">Confirmed</option>
+              <option value="Completed">Completed</option>
+              <option value="Cancelled">Cancelled</option>
+            </select>
+
+            <button class="btn btn-gold btn-sm" id="btnAddNewLead">
+              <i class="fa-solid fa-user-plus"></i> New Lead
+            </button>
+            <button class="btn btn-outline btn-sm" id="btnExportCSV">
+              <i class="fa-solid fa-file-csv"></i> CSV
+            </button>
+          </div>
+        </div>
+
+        <div class="crm-table-wrap">
+          <table class="crm-table">
+            <thead>
+              <tr>
+                <th>Lead ID & Source</th>
+                <th>Patient Details</th>
+                <th>Age / Gender</th>
+                <th>Treatment</th>
+                <th>Doctor</th>
+                <th>Preferred Slot</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="crmTableBody">
+              <!-- Rendered by js/admin.js -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 2: SMILE TRANSFORMATIONS CMS -->
+    <section id="crmTabTransformations" style="display: none;">
+      <div class="crm-main-card">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; flex-wrap: wrap; gap: 14px;">
+          <div>
+            <h3 class="font-serif" style="font-size: 1.4rem; margin-bottom: 4px;">Smile Transformations Manager</h3>
+            <p style="font-size: 0.88rem; color: var(--text-muted);">Manage and upload Before & After clinical smile transformation photos displayed on the live website.</p>
+          </div>
+          <button class="btn btn-gold btn-sm" id="btnUploadTransformation">
+            <i class="fa-solid fa-plus"></i> Upload New Transformation
+          </button>
+        </div>
+
+        <div class="tr-cms-grid" id="trCmsGrid">
+          <!-- Rendered dynamically by js/admin.js -->
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 4. LEAD DETAILS & TRANSCRIPT MODAL -->
+  <div class="crm-modal-backdrop" id="leadDetailsModal">
+    <div class="crm-modal-content">
+      <div class="crm-modal-header">
+        <div>
+          <h3 class="font-serif" id="modalLeadTitle" style="font-size: 1.25rem; margin-bottom: 2px;">Patient Inquiry Details</h3>
+          <span id="modalLeadSourceBadge" class="source-pill">Source</span>
+        </div>
+        <button class="table-action-btn" id="modalCloseBtn"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <div class="crm-modal-body">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 18px;">
+          <div>
+            <label style="font-size: 0.74rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">Patient Name</label>
+            <p id="modalPatientName" style="font-weight: 700; font-size: 1rem;"></p>
+          </div>
+          <div>
+            <label style="font-size: 0.74rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">Phone Number</label>
+            <p id="modalPatientPhone" style="font-weight: 700; font-size: 1rem;"></p>
+          </div>
+          <div>
+            <label style="font-size: 0.74rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">Age / Gender</label>
+            <p id="modalPatientAgeGender" style="font-weight: 600;"></p>
+          </div>
+          <div>
+            <label style="font-size: 0.74rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">Treatment</label>
+            <p id="modalTreatment" style="font-weight: 600;"></p>
+          </div>
+          <div>
+            <label style="font-size: 0.74rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">Preferred Doctor</label>
+            <p id="modalDoctor" style="font-weight: 600;"></p>
+          </div>
+          <div>
+            <label style="font-size: 0.74rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">Preferred Date & Slot</label>
+            <p id="modalDateSlot" style="font-weight: 600;"></p>
+          </div>
+        </div>
+
+        <div style="margin-bottom: 16px;">
+          <label style="font-size: 0.74rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">Patient Message / Concern</label>
+          <p id="modalMessage" style="background: var(--bg-secondary); padding: 10px; border-radius: var(--radius-sm); font-size: 0.88rem; line-height: 1.5; margin-top: 4px;"></p>
+        </div>
+
+        <!-- AI Chat Transcript -->
+        <div id="modalChatTranscriptWrap" style="margin-bottom: 16px; display: none;">
+          <label style="font-size: 0.74rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">AI Chatbot Full Transcript</label>
+          <div class="chat-transcript-box" id="modalChatTranscript"></div>
+        </div>
+
+        <!-- Clinical Notes -->
+        <div>
+          <label for="modalClinicalNotes" style="font-size: 0.74rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">Doctor / Reception Clinical Notes</label>
+          <textarea id="modalClinicalNotes" class="form-control" rows="2" placeholder="Add follow-up notes..."></textarea>
+        </div>
+      </div>
+
+      <div class="crm-modal-footer">
+        <a id="modalWhatsAppBtn" href="#" target="_blank" class="btn btn-whatsapp btn-sm">
+          <i class="fa-brands fa-whatsapp"></i> WhatsApp
+        </a>
+        <button class="btn btn-gold btn-sm" id="modalSaveNotesBtn">
+          <i class="fa-solid fa-floppy-disk"></i> Save Notes
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. UPLOAD NEW TRANSFORMATION MODAL -->
+  <div class="crm-modal-backdrop" id="uploadTrModal">
+    <div class="crm-modal-content">
+      <div class="crm-modal-header">
+        <h3 class="font-serif" style="font-size: 1.25rem;">Upload New Smile Transformation</h3>
+        <button class="table-action-btn" id="uploadTrCloseBtn"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <form id="uploadTrForm">
+        <div class="crm-modal-body">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Case Title *</label>
+              <input type="text" id="trTitle" class="form-control" placeholder="e.g. Diastema Spacing Closure" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Treatment Tag & Duration *</label>
+              <input type="text" id="trTag" class="form-control" placeholder="e.g. Clear Aligners • 9 Months" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Assigned Doctor *</label>
+              <select id="trDoctor" class="form-control" required>
+                <option value="Dr. Kapil Jain">Dr. Kapil Jain (Ortho & Aligners)</option>
+                <option value="Dr. Mrs Anmoll Jain">Dr. Mrs Anmoll Jain (Cosmetic & Laser RCT)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Clinical Description *</label>
+              <input type="text" id="trDesc" class="form-control" placeholder="Short description of clinical outcome" required>
+            </div>
+          </div>
+
+          <!-- Photo Upload / URL Inputs -->
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">🔴 BEFORE Photo (File or URL) *</label>
+              <input type="file" id="trBeforeFile" class="form-control" accept="image/*" style="margin-bottom: 6px;">
+              <input type="text" id="trBeforeUrl" class="form-control" placeholder="Or enter image URL (e.g. images/before-crowding.png)">
+            </div>
+            <div class="form-group">
+              <label class="form-label">🟢 AFTER Photo (File or URL) *</label>
+              <input type="file" id="trAfterFile" class="form-control" accept="image/*" style="margin-bottom: 6px;">
+              <input type="text" id="trAfterUrl" class="form-control" placeholder="Or enter image URL (e.g. images/after-crowding.png)">
+            </div>
+          </div>
+        </div>
+
+        <div class="crm-modal-footer">
+          <button type="button" class="btn btn-outline btn-sm" id="uploadTrCancelBtn">Cancel</button>
+          <button type="submit" class="btn btn-gold btn-sm"><i class="fa-solid fa-cloud-arrow-up"></i> Save & Publish</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/crm-store.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>
