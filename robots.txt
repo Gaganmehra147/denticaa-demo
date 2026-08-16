@@ -1,6 +1,7 @@
-# Robots.txt for Denticaa Dental Clinic Website
+# Robots.txt for Denticaa Dental Clinic Website (denticaa.in)
 User-agent: *
 Allow: /
+Disallow: /admin.html
 
 # AI & Search Engine Crawlers Access Enabled
 User-agent: GPTBot
@@ -15,4 +16,11 @@ Allow: /
 User-agent: ClaudeBot
 Allow: /
 
-Sitemap: https://denticaadental.com/sitemap.xml
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+Sitemap: https://denticaa.in/sitemap.xml
+
