@@ -26,7 +26,7 @@ SLOT CONFLICT RULE:
 CLINIC INFORMATION:
 - Clinic: Denticaa Dental Care, Ground Floor, Nalini Apartment, Near Astha Medical, Mohanlal Hargobindas Hospital Road, Wright Town, Jabalpur, MP 482001.
 - Doctors:
-  * Dr. Kapil Jain (BDS, MDS Orthodontics & Dentofacial Orthopedics — 14+ yrs exp, People's College Bhopal 2012, expert in braces, invisible clear aligners, dental microscopes). Phone: +91 9575216665.
+  * Dr. Kapil Jain (BDS, MDS Orthodontics & Dentofacial Orthopedics — 14+ yrs exp, People's College Bhopal 2012, expert in braces, invisible clear aligners, dental microscopes). Phone: +91 9575216655.
   * Dr. Mrs Anmoll Jain (BDS Cosmetic Dental Surgeon — expert in Hollywood smile makeovers, porcelain veneers, single-sitting painless laser root canals, LED whitening). Phone: +91 9575552165.
 - Timings: Morning (10:30 AM – 01:30 PM), Evening (05:00 PM – 08:30 PM).
 
@@ -239,7 +239,7 @@ class DenticaaAIChatbot {
 
       let waUrl = null;
       if (this.bookingState.phone) {
-        const docPhone = this.bookingState.doctor.includes('Anmoll') ? '919575552165' : '919575216665';
+        const docPhone = this.bookingState.doctor.includes('Anmoll') ? '919575552165' : '919575216655';
         waUrl = `https://wa.me/${docPhone}?text=${encodeURIComponent(`Hello Denticaa, I would like to book consultation for ${this.bookingState.name || 'Patient'}`)}`;
       }
 
@@ -368,7 +368,7 @@ class DenticaaAIChatbot {
         status: 'Confirmed'
       });
 
-      const docPhone = s.doctor.includes('Anmoll') ? '919575552165' : '919575216665';
+      const docPhone = s.doctor.includes('Anmoll') ? '919575552165' : '919575216655';
       const waMsg = encodeURIComponent(`*🦷 Denticaa Appointment Confirmation*\n\n👤 *Patient:* ${s.name || 'Patient'}\n📞 *Phone:* ${s.phone}\n🎂 *Age/Gender:* ${s.age || 'N/A'} / ${s.gender || 'N/A'}\n👨‍⚕️ *Doctor:* ${s.doctor}\n🩺 *Treatment:* ${s.treatment || 'Consultation'}\n📅 *Date:* ${s.date}\n⏰ *Slot:* ${s.timeSlot}\n\n_Booked via Denticaa AI Assistant_`);
       const whatsappUrl = `https://wa.me/${docPhone}?text=${waMsg}`;
 
@@ -450,7 +450,7 @@ class DenticaaAIChatbot {
       return "Denticaa me **Dr. Mrs Anmoll Jain** painless single-sitting laser root canal treatment karti hain. Appointment book karne ke liye apna Name, Mobile number aur time slot batayein.";
     }
     if (q.includes('timing') || q.includes('location') || q.includes('address')) {
-      return "📍 **Location:** Ground Floor, Nalini Apartment, Mohanlal Hargobindas Hospital Road, Wright Town, Jabalpur.\n⏰ **Timings:** Morning: 10:30 AM - 01:30 PM | Evening: 05:00 PM - 08:30 PM (Mon-Sat).\n📞 Phone: 9575216665 / 9575552165.";
+      return "📍 **Location:** Ground Floor, Nalini Apartment, Mohanlal Hargobindas Hospital Road, Wright Town, Jabalpur.\n⏰ **Timings:** Morning: 10:30 AM - 01:30 PM | Evening: 05:00 PM - 08:30 PM (Mon-Sat).\n📞 Phone: 9575216655 / 9575552165.";
     }
 
     return "Denticaa Dental Care me Dr. Kapil Jain (Ortho/Aligners) aur Dr. Mrs Anmoll Jain (Cosmetic/Laser RCT) available hain. Consultation book karne ke liye aap apna **Name, Mobile number, Age, Gender aur preferred Date/Time** yaha likhein!";
