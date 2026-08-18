@@ -147,6 +147,9 @@ function triggerCelebratoryFireworks() {
   animate();
 }
 
+// 0. Cloud Webhook for Google Sheets, Email & WhatsApp Automation
+window.DENTICAA_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbyOz0p_G0utfNVpt1bCei7R378HCRL88o3eHIIRO31c0bb66MfF_oOpLLEjEat-6pGw/exec";
+
 // 4. Show Celebratory Booking & Consultation Payment Portal
 function showCelebratoryBookingModal(details) {
   triggerCelebratoryFireworks();
@@ -161,7 +164,7 @@ function showCelebratoryBookingModal(details) {
   const upiIntentUrl = `upi://pay?pa=${clinicUpiId}&pn=${encodeURIComponent(clinicUpiName)}&am=${consultationFee}&cu=INR&tn=${encodeURIComponent(`Denticaa Token ${tokenNumber}`)}`;
   const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=190x190&margin=4&data=${encodeURIComponent(upiIntentUrl)}`;
 
-  const docPhone = details.doctor.includes('Anmoll') ? '919575552165' : '919575216655';
+  const docPhone = details.doctor.includes('Anmoll') ? '919575552165' : '917509194919';
 
   const modalHTML = `
     <div id="appointmentSuccessModal" style="position: fixed; inset: 0; background: rgba(10, 15, 24, 0.88); backdrop-filter: blur(14px); z-index: 10003; display: flex; align-items: center; justify-content: center; padding: 16px; animation: modalFadeIn 0.35s ease; overflow-y: auto;">
@@ -376,6 +379,32 @@ _Thank you for choosing Denticaa Dental Care._`
         source: `Website (${paymentModeText})`,
         status: 'Confirmed'
       });
+    }
+
+    // Auto-dispatch to Google Sheets, Email & Automated WhatsApp Webhook
+    if (window.DENTICAA_WEBHOOK_URL) {
+      try {
+        fetch(window.DENTICAA_WEBHOOK_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            tokenNumber: tokenNumber,
+            patientName: details.name,
+            patientPhone: details.phone,
+            patientEmail: details.email || '',
+            preferredDoctor: details.doctor,
+            treatment: details.service,
+            preferredDate: details.date,
+            timeSlot: details.timeSlot,
+            paymentMode: paymentModeText,
+            status: 'Confirmed',
+            message: details.message || ''
+          })
+        });
+      } catch (err) {
+        console.warn('Google Sheets/Webhook dispatch offline:', err);
+      }
     }
   }
 

@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
 _Sent from Denticaa Dental Clinic Official Website_`
     );
 
-    const whatsappUrl = `https://wa.me/919575216655?text=${formattedMessage}`;
+    const whatsappUrl = `https://wa.me/917509194919?text=${formattedMessage}`;
 
     // Show Success Modal or Toast
     showBookingConfirmation(name, service, date, timeSlot, whatsappUrl);

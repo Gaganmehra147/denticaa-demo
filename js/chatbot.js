@@ -239,7 +239,7 @@ class DenticaaAIChatbot {
 
       let waUrl = null;
       if (this.bookingState.phone) {
-        const docPhone = this.bookingState.doctor.includes('Anmoll') ? '919575552165' : '919575216655';
+        const docPhone = this.bookingState.doctor.includes('Anmoll') ? '919575552165' : '917509194919';
         waUrl = `https://wa.me/${docPhone}?text=${encodeURIComponent(`Hello Denticaa, I would like to book consultation for ${this.bookingState.name || 'Patient'}`)}`;
       }
 
@@ -368,9 +368,35 @@ class DenticaaAIChatbot {
         status: 'Confirmed'
       });
 
-      const docPhone = s.doctor.includes('Anmoll') ? '919575552165' : '919575216655';
+      const docPhone = s.doctor.includes('Anmoll') ? '919575552165' : '917509194919';
       const waMsg = encodeURIComponent(`*🦷 Denticaa Appointment Confirmation*\n\n👤 *Patient:* ${s.name || 'Patient'}\n📞 *Phone:* ${s.phone}\n🎂 *Age/Gender:* ${s.age || 'N/A'} / ${s.gender || 'N/A'}\n👨‍⚕️ *Doctor:* ${s.doctor}\n🩺 *Treatment:* ${s.treatment || 'Consultation'}\n📅 *Date:* ${s.date}\n⏰ *Slot:* ${s.timeSlot}\n\n_Booked via Denticaa AI Assistant_`);
       const whatsappUrl = `https://wa.me/${docPhone}?text=${waMsg}`;
+
+      // Auto-dispatch to Google Sheets, Email & Automated WhatsApp Webhook
+      if (window.DENTICAA_WEBHOOK_URL) {
+        try {
+          fetch(window.DENTICAA_WEBHOOK_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              tokenNumber: 'CHAT-' + Math.floor(1000 + Math.random() * 9000),
+              patientName: s.name || 'Chatbot Patient',
+              patientPhone: s.phone,
+              patientEmail: '',
+              preferredDoctor: s.doctor,
+              treatment: s.treatment || 'Consultation',
+              preferredDate: s.date,
+              timeSlot: s.timeSlot,
+              paymentMode: 'Pay at Clinic (Chatbot)',
+              status: 'Confirmed',
+              message: `AI Chatbot Booking. Age: ${s.age || 'N/A'}, Gender: ${s.gender || 'N/A'}`
+            })
+          });
+        } catch (e) {
+          console.warn('Chatbot webhook offline:', e);
+        }
+      }
 
       // Closing confirmation message
       const closingReply = `✅ **Thank you for visiting Denticaa!** 🙏\n\n` +

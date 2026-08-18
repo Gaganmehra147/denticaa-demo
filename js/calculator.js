@@ -104,7 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     if (calcBookBtn) {
-      calcBookBtn.href = `https://wa.me/919575216655?text=${encodeURIComponent('Hello Denticaa Dental Clinic, I want to book a consultation for ' + data.bookingParam + ' (' + data.estimate + ')')}`;
+      calcBookBtn.href = `https://wa.me/917509194919?text=${encodeURIComponent('Hello Denticaa Dental Clinic, I want to book a consultation for ' + data.bookingParam + ' (' + data.estimate + ')')}`;
     }
   }
 
