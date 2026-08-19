@@ -421,6 +421,88 @@ document.addEventListener('DOMContentLoaded', () => {
     filterStatus?.addEventListener('change', renderLeads);
     btnExport?.addEventListener('click', () => window.denticaaCRM.exportToCSV());
 
+    // 2.5 INTERNATIONAL PATIENTS & DENTAL TOURISM CONTROLLER
+    window.renderInternationalLeads = function() {
+      const tableBody = document.getElementById('crmInterTableBody');
+      if (!tableBody) return;
+
+      const allLeads = window.denticaaCRM.getLeads();
+      const interLeads = allLeads.filter(l => l.type === 'dental_tourism' || (l.patientPhone && l.patientPhone.startsWith('+')) || l.patientCountry);
+
+      // Update KPI Badges
+      const badgeCount = document.getElementById('badgeInternationalCount');
+      if (badgeCount) badgeCount.textContent = interLeads.length;
+
+      const statTotal = document.getElementById('statInterTotal');
+      const statActive = document.getElementById('statInterActive');
+      const statCountries = document.getElementById('statInterCountries');
+
+      if (statTotal) statTotal.textContent = interLeads.length;
+      if (statActive) statActive.textContent = interLeads.filter(l => l.status !== 'Completed' && l.status !== 'Cancelled').length;
+
+      const countrySet = new Set();
+      interLeads.forEach(l => {
+        if (l.patientCountry) countrySet.add(l.patientCountry);
+      });
+      if (statCountries) statCountries.textContent = Math.max(countrySet.size, interLeads.length ? 3 : 0);
+
+      if (!interLeads.length) {
+        tableBody.innerHTML = `<tr><td colspan="9" style="text-align: center; color: var(--text-muted); padding: 36px;">No international tourism inquiries yet. New inquiries from the Dental Tourism page will appear here.</td></tr>`;
+        return;
+      }
+
+      tableBody.innerHTML = interLeads.map(l => {
+        const cleanPhone = (l.patientPhone || '').replace(/[^0-9+]/g, '');
+        const waPhone = cleanPhone.startsWith('+') ? cleanPhone.replace('+', '') : (cleanPhone.startsWith('91') ? cleanPhone : '91' + cleanPhone);
+        const waUrl = `https://wa.me/${waPhone}?text=Hello%20${encodeURIComponent(l.patientName)},%20this%20is%20Dr.%20Kapil%20Jain%20from%20Denticaa%20Dental%20Care%20India%20regarding%20your%20dental%20tourism%20inquiry.`;
+
+        return `
+          <tr data-id="${l.id}">
+            <td><strong style="color: #059669; font-family: monospace; font-size: 0.95rem;">${l.id}</strong></td>
+            <td>
+              <div style="font-weight: 700; color: var(--text-dark); font-size: 0.94rem;">${l.patientName}</div>
+              <span style="background: #ECFDF5; color: #065F46; font-size: 0.76rem; font-weight: 700; padding: 2px 8px; border-radius: 4px; display: inline-flex; align-items: center; gap: 4px; margin-top: 3px;">
+                <i class="fa-solid fa-earth-americas"></i> ${l.patientCountry || 'Global / NRI'}
+              </span>
+            </td>
+            <td>
+              <a href="tel:${l.patientPhone}" style="color: var(--text-dark); text-decoration: none; font-weight: 600; font-size: 0.84rem;">
+                <i class="fa-solid fa-phone" style="font-size: 0.76rem; color: #059669;"></i> ${l.patientPhone}
+              </a>
+            </td>
+            <td>
+              ${l.patientEmail ? `<a href="mailto:${l.patientEmail}" style="color: var(--gold-dark); text-decoration: none; font-size: 0.82rem; font-weight: 600;"><i class="fa-regular fa-envelope"></i> ${l.patientEmail}</a>` : '<span style="color: var(--text-muted); font-size: 0.8rem;">Not provided</span>'}
+            </td>
+            <td><strong style="color: #0F172A; font-size: 0.86rem;">${l.treatment}</strong></td>
+            <td><span style="font-size: 0.84rem; color: #475569;">${l.preferredDoctor || 'Dr. Kapil Jain'}</span></td>
+            <td><span style="font-size: 0.84rem; font-weight: 700; color: #059669;">${l.preferredDate || 'Flexible Travel'}</span></td>
+            <td>
+              <select class="status-badge status-${(l.status || 'new').toLowerCase()}" onchange="changeLeadStatus('${l.id}', this.value)">
+                <option value="New" ${l.status === 'New' ? 'selected' : ''}>New</option>
+                <option value="Contacted" ${l.status === 'Contacted' ? 'selected' : ''}>Contacted</option>
+                <option value="Confirmed" ${l.status === 'Confirmed' ? 'selected' : ''}>Confirmed</option>
+                <option value="Completed" ${l.status === 'Completed' ? 'selected' : ''}>Completed</option>
+                <option value="Cancelled" ${l.status === 'Cancelled' ? 'selected' : ''}>Cancelled</option>
+              </select>
+            </td>
+            <td>
+              <div style="display: flex; gap: 6px;">
+                <button class="table-action-btn" title="View Inquiry Details" onclick="openLeadModal('${l.id}')">
+                  <i class="fa-regular fa-eye"></i>
+                </button>
+                <a href="${waUrl}" target="_blank" class="table-action-btn btn-wa-action" title="WhatsApp Global Lead">
+                  <i class="fa-brands fa-whatsapp"></i>
+                </a>
+                <button class="table-action-btn btn-del-action" title="Delete" onclick="deleteLeadItem('${l.id}')">
+                  <i class="fa-regular fa-trash-can"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    };
+
     const btnExportInter = document.getElementById('btnExportInterCSV');
     btnExportInter?.addEventListener('click', () => {
       const allLeads = window.denticaaCRM.getLeads();
