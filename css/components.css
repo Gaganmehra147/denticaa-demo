@@ -435,14 +435,14 @@
 }
 
 .doctor-tab-btn.active {
-  background: var(--text-dark);
-  border-color: var(--text-dark);
+  background: linear-gradient(135deg, var(--gold-primary), var(--gold-dark));
+  border-color: var(--gold-dark);
   color: #FFFFFF;
-  box-shadow: 0 4px 16px rgba(26, 31, 40, 0.2);
+  box-shadow: 0 4px 18px rgba(197, 155, 39, 0.35);
 }
 
 .doctor-tab-btn.active i {
-  color: var(--gold-light);
+  color: #FFFFFF;
 }
 
 /* Showcase Card (Compact Sleek Luxury Frame - Theme Matched) */
@@ -454,8 +454,8 @@
   background: #FFFFFF;
   border: 1.5px solid var(--gold-border, #E5D5BA);
   border-radius: var(--radius-xl);
-  padding: 28px 32px;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06);
+  padding: 32px;
+  box-shadow: 0 14px 45px rgba(0, 0, 0, 0.06);
   position: relative;
   max-width: 1060px;
   margin: 0 auto;
@@ -495,19 +495,20 @@
 /* Top-Right Excellence Gold Badge */
 .doctor-exp-badge {
   position: absolute;
-  top: 10px;
-  right: 10px;
-  background: rgba(15, 20, 28, 0.88);
-  backdrop-filter: blur(8px);
-  border: 1px solid var(--gold-border);
-  color: var(--gold-light);
-  font-size: 0.72rem;
-  font-weight: 700;
-  padding: 4px 10px;
+  top: 12px;
+  right: 12px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border: 1.5px solid var(--gold-border);
+  color: var(--gold-dark);
+  font-size: 0.74rem;
+  font-weight: 800;
+  padding: 5px 12px;
   border-radius: var(--radius-full);
   display: inline-flex;
   align-items: center;
-  gap: 5px;
+  gap: 6px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
 }
 
 .doctor-exp-badge i {
@@ -517,21 +518,22 @@
 /* Bottom Floating Nameplate Overlay */
 .doctor-nameplate-overlay {
   position: absolute;
-  bottom: 10px;
-  left: 10px;
-  right: 10px;
-  background: rgba(15, 20, 28, 0.92);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(199, 167, 106, 0.4);
-  padding: 10px 14px;
+  bottom: 12px;
+  left: 12px;
+  right: 12px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(14px);
+  border: 1.5px solid var(--gold-border);
+  padding: 12px 14px;
   border-radius: var(--radius-sm);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
 }
 
 .doctor-nameplate-title {
   font-family: var(--font-serif);
   font-size: 1.15rem;
-  font-weight: 700;
-  color: #FFFFFF;
+  font-weight: 800;
+  color: #0F172A;
   letter-spacing: 0.5px;
   margin-bottom: 2px;
   text-transform: uppercase;
@@ -539,8 +541,8 @@
 
 .doctor-nameplate-sub {
   font-size: 0.74rem;
-  color: var(--gold-light);
-  font-weight: 600;
+  color: var(--gold-dark);
+  font-weight: 700;
 }
 
 /* Right Column: Bio, Headline, Quote, Feature Pills, CTAs */
@@ -1955,35 +1957,46 @@
 .plan-poster-wrap {
   position: relative;
   width: 100%;
-  height: 220px;
+  height: 280px;
   overflow: hidden;
-  background: #0F141C;
+  background: #F8FAFC;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 14px 0 14px;
 }
 
 .plan-poster-img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: top center;
-  transition: transform 0.5s ease;
+  object-fit: contain;
+  object-position: center;
+  border-radius: 12px;
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
 .plan-card:hover .plan-poster-img {
-  transform: scale(1.05);
+  transform: scale(1.03);
+  box-shadow: 0 8px 24px rgba(197, 155, 39, 0.22);
 }
 
 .plan-poster-zoom-hint {
   position: absolute;
-  bottom: 10px;
-  right: 10px;
-  background: rgba(15, 20, 28, 0.75);
+  bottom: 12px;
+  right: 18px;
+  background: rgba(15, 20, 28, 0.82);
   color: #FFFFFF;
-  font-size: 0.7rem;
-  padding: 3px 8px;
-  border-radius: 4px;
-  backdrop-filter: blur(4px);
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 6px;
+  backdrop-filter: blur(6px);
   pointer-events: none;
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .plan-body {
