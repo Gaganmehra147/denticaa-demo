@@ -9,6 +9,135 @@ const TRANSFORMATIONS_STORAGE_KEY = 'denticaa_transformations_v1';
 // Initial Demo Seed Leads
 const INITIAL_DEMO_LEADS = [
   {
+    id: 'MEM-1001',
+    type: 'membership_plan',
+    patientName: 'Prakash Vardhan Verma',
+    patientPhone: '9827011223',
+    patientEmail: 'prakash.verma@gmail.com',
+    planName: 'Denticaa Prime+ (₹2,999/Yr)',
+    planPrice: '₹2,999',
+    familyMembers: '4 Members (Self, Spouse, 2 Kids)',
+    address: 'Napier Town, Jabalpur',
+    startDate: '2026-08-19',
+    expiryDate: '2027-08-19',
+    status: 'Active',
+    paymentMode: 'UPI Paid (denticaa4060ms@fbl)',
+    source: 'Denticaa Membership Portal',
+    createdAt: '2026-08-19T02:00:00.000Z',
+    notes: 'Dental care kit issued at reception. 2 free cleanings available.'
+  },
+  {
+    id: 'MEM-1002',
+    type: 'membership_plan',
+    patientName: 'Dr. Neha Saxena',
+    patientPhone: '9425890456',
+    patientEmail: 'dr.nehasaxena@outlook.com',
+    planName: 'Denticaa Premium (₹4,999/Yr)',
+    planPrice: '₹4,999',
+    familyMembers: '2 Members (Neha, Siddharth)',
+    address: 'Wright Town, Near Astha Medical, Jabalpur',
+    startDate: '2026-08-10',
+    expiryDate: '2027-08-10',
+    status: 'Active',
+    paymentMode: 'UPI Paid (denticaa4060ms@fbl)',
+    source: 'Denticaa Membership Portal',
+    createdAt: '2026-08-10T11:30:00.000Z',
+    notes: 'Premium VIP care kit delivered. 10 free checkups active.'
+  },
+  {
+    id: 'MEM-1003',
+    type: 'membership_plan',
+    patientName: 'Amitabh Sen',
+    patientPhone: '9893245678',
+    patientEmail: 'amitabh.sen@tatamotors.com',
+    planName: 'Denticaa Prime (₹999/Yr)',
+    planPrice: '₹999',
+    familyMembers: '1 Member',
+    address: 'Civil Lines, Jabalpur',
+    startDate: '2026-08-15',
+    expiryDate: '2027-08-15',
+    status: 'Active',
+    paymentMode: 'Pay at Clinic',
+    source: 'Denticaa Membership Portal',
+    createdAt: '2026-08-15T16:00:00.000Z',
+    notes: 'Member registered for 1-year general dental discounts.'
+  },
+  {
+    id: 'LEAD-105',
+    type: 'form',
+    patientName: 'Sunita Mishra',
+    patientPhone: '9424789012',
+    patientEmail: '',
+    patientAge: '45',
+    patientGender: 'Female',
+    treatment: 'Dental Implants',
+    preferredDoctor: 'Dr. Kapil Jain',
+    preferredDate: '2026-08-22',
+    timeSlot: 'Morning (10:30 AM - 01:30 PM)',
+    message: 'Needs lower molar implant consultation. Has existing bone graft reports.',
+    status: 'New',
+    source: 'Website Consultation Form',
+    createdAt: '2026-08-14T09:00:00.000Z',
+    notes: 'Follow-up call scheduled.'
+  },
+  {
+    id: 'TOUR-106',
+    type: 'dental_tourism',
+    patientName: 'Michael Roberts',
+    patientPhone: '+1 (415) 890-4122',
+    patientEmail: 'm.roberts@california-tech.com',
+    patientCountry: 'United States 🇺🇸',
+    patientAge: '42',
+    patientGender: 'Male',
+    treatment: 'Dental Implants & All-on-4',
+    preferredDoctor: 'Dr. Kapil Jain (MDS Ortho & Aligners)',
+    preferredDate: 'October 2026',
+    timeSlot: 'Tourism Assessment',
+    message: 'Planning 7-day trip to India for Full Upper & Lower Implants. Want to combine with Kanha Tiger Safari tour.',
+    status: 'Contacted',
+    source: 'Dental Tourism India Portal',
+    createdAt: '2026-08-15T11:20:00.000Z',
+    notes: 'Virtual consultation done via WhatsApp. Shared Straumann implant estimate & Jabalpur itinerary.'
+  },
+  {
+    id: 'TOUR-107',
+    type: 'dental_tourism',
+    patientName: 'Sarah Jenkins',
+    patientPhone: '+44 7700 900821',
+    patientEmail: 'sarah.jenkins@londonconsulting.co.uk',
+    patientCountry: 'United Kingdom 🇬🇧',
+    patientAge: '31',
+    patientGender: 'Female',
+    treatment: 'Hollywood Smile / Porcelain Veneers',
+    preferredDoctor: 'Dr. Mrs Anmoll Jain (BDS Cosmetic & Laser)',
+    preferredDate: 'September 2026',
+    timeSlot: 'Tourism Assessment',
+    message: 'Looking for 8 front porcelain veneers & teeth whitening. Interested in Marble Rocks Bhedaghat sunset package.',
+    status: 'New',
+    source: 'Dental Tourism India Portal',
+    createdAt: '2026-08-16T14:40:00.000Z',
+    notes: 'New inquiry received from UK. Digital smile design catalog sent.'
+  },
+  {
+    id: 'TOUR-108',
+    type: 'dental_tourism',
+    patientName: 'Tariq Al-Mansoor',
+    patientPhone: '+971 50 123 4567',
+    patientEmail: 'tariq.almansoor@emiratesgroup.ae',
+    patientCountry: 'UAE / Dubai 🇦🇪',
+    patientAge: '39',
+    patientGender: 'Male',
+    treatment: 'Clear Aligners & Invisible Braces',
+    preferredDoctor: 'Dr. Kapil Jain (MDS Ortho & Aligners)',
+    preferredDate: 'November 2026',
+    timeSlot: 'Tourism Assessment',
+    message: 'Inquiring for complete aligner treatment plan during 5-day vacation in Jabalpur & Bandhavgarh.',
+    status: 'Confirmed',
+    source: 'Dental Tourism India Portal',
+    createdAt: '2026-08-17T18:10:00.000Z',
+    notes: '3D simulation approved. Hotel reservation in Wright Town assisted.'
+  },
+  {
     id: 'LEAD-101',
     type: 'form',
     patientName: 'Rahul Mehra',
@@ -144,10 +273,31 @@ class DenticaaCRMStore {
   getLeads() {
     try {
       const data = localStorage.getItem(CRM_STORAGE_KEY);
-      return data ? JSON.parse(data) : [];
+      if (!data) {
+        localStorage.setItem(CRM_STORAGE_KEY, JSON.stringify(INITIAL_DEMO_LEADS));
+        return INITIAL_DEMO_LEADS;
+      }
+      const parsed = JSON.parse(data);
+      if (!Array.isArray(parsed) || parsed.length === 0) {
+        localStorage.setItem(CRM_STORAGE_KEY, JSON.stringify(INITIAL_DEMO_LEADS));
+        return INITIAL_DEMO_LEADS;
+      }
+      // Auto-merge demo tourism & membership leads if missing
+      const hasTourism = parsed.some(l => l.type === 'dental_tourism');
+      const hasMembership = parsed.some(l => l.type === 'membership_plan');
+      if (!hasTourism || !hasMembership) {
+        const extraDemos = INITIAL_DEMO_LEADS.filter(l => 
+          (!hasTourism && l.type === 'dental_tourism') || 
+          (!hasMembership && l.type === 'membership_plan')
+        );
+        const merged = [...extraDemos, ...parsed];
+        localStorage.setItem(CRM_STORAGE_KEY, JSON.stringify(merged));
+        return merged;
+      }
+      return parsed;
     } catch (e) {
-      console.error('Error reading CRM leads:', e);
-      return [];
+      console.warn('Error reading CRM leads, using initial demo set:', e);
+      return INITIAL_DEMO_LEADS;
     }
   }
 

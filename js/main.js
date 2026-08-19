@@ -159,10 +159,10 @@ function showCelebratoryBookingModal(details) {
 
   const tokenNumber = 'DNT-' + Math.floor(1000 + Math.random() * 9000);
   const consultationFee = 300;
-  const clinicUpiId = '9575216655@upi';
-  const clinicUpiName = 'Denticaa Dental Care';
+  const clinicUpiId = 'denticaa4060ms@fbl';
+  const clinicUpiName = 'DENTICAA';
   const upiIntentUrl = `upi://pay?pa=${clinicUpiId}&pn=${encodeURIComponent(clinicUpiName)}&am=${consultationFee}&cu=INR&tn=${encodeURIComponent(`Denticaa Token ${tokenNumber}`)}`;
-  const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=190x190&margin=4&data=${encodeURIComponent(upiIntentUrl)}`;
+  const qrCodeUrl = 'images/denticaa-clinic-qr.png';
 
   const docPhone = details.doctor.includes('Anmoll') ? '919575552165' : '917509194919';
 
@@ -222,7 +222,7 @@ function showCelebratoryBookingModal(details) {
         <!-- PANEL 1: UPI QR CODE & APPS -->
         <div id="paymentPanelUPI" style="display: block;">
           <div style="background: #FFFFFF; border: 2px dashed #C59B27; border-radius: 16px; padding: 14px; display: inline-block; margin-bottom: 12px; box-shadow: 0 4px 16px rgba(197, 155, 39, 0.15);">
-            <img src="${qrCodeUrl}" alt="Denticaa UPI Payment QR Code" style="width: 160px; height: 160px; display: block; margin: 0 auto; border-radius: 8px;">
+            <img src="${qrCodeUrl}" alt="Denticaa UPI Payment QR Code" style="width: 175px; height: 175px; display: block; margin: 0 auto; border-radius: 8px; object-fit: contain;">
             <span style="font-size: 0.74rem; color: #64748B; font-weight: 600; margin-top: 6px; display: block;">
               Scan with GPay / PhonePe / Paytm / BHIM
             </span>
@@ -609,3 +609,165 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+
+// Plan Poster Lightbox Modal Handler
+window.openPlanPosterModal = function(imgSrc, title) {
+  const modal = document.getElementById('planPosterModal');
+  const modalImg = document.getElementById('planPosterModalImg');
+  const modalTitle = document.getElementById('planPosterModalTitle');
+  const waBtn = document.getElementById('planPosterWhatsAppBtn');
+  if (modal && modalImg) {
+    modalImg.src = imgSrc;
+    if (modalTitle) modalTitle.textContent = title;
+    if (waBtn) {
+      const waMsg = encodeURIComponent(`Hello Dr. Kapil, I saw the ${title} poster on Denticaa website and want to enroll.`);
+      waBtn.href = `https://wa.me/917509194919?text=${waMsg}`;
+    }
+    modal.style.display = 'flex';
+  }
+};
+
+window.closePlanPosterModal = function() {
+  const modal = document.getElementById('planPosterModal');
+  if (modal) modal.style.display = 'none';
+};
+
+// Plan Enrollment Modal Handlers
+window.openPlanEnrollModal = function(planName, price) {
+  const modal = document.getElementById('planEnrollModal');
+  const select = document.getElementById('enrollPlanSelect');
+  if (select && planName) {
+    for (let opt of select.options) {
+      if (opt.value.includes(planName) || planName.includes(opt.value)) {
+        select.value = opt.value;
+        break;
+      }
+    }
+  }
+  updateEnrollPlanUI();
+  if (modal) modal.style.display = 'flex';
+};
+
+window.closePlanEnrollModal = function() {
+  const modal = document.getElementById('planEnrollModal');
+  if (modal) modal.style.display = 'none';
+};
+
+window.updateEnrollPlanUI = function() {
+  const select = document.getElementById('enrollPlanSelect');
+  const highlight = document.getElementById('enrollPlanBadgeHighlight');
+  if (!select || !highlight) return;
+  const val = select.value;
+  if (val.includes('Prime (₹999')) {
+    highlight.innerHTML = '<i class="fa-solid fa-circle-check"></i> Includes Dental Care Kit + 2 Free Consultations + 1 Free Cleaning + 20% Treatment Off';
+  } else if (val.includes('Prime+ (₹2,999')) {
+    highlight.innerHTML = '<i class="fa-solid fa-circle-check"></i> ⭐ Best Value: Dental Care Kit + 5 Free Consultations + 2 Free Cleanings + 25% Treatment Off';
+  } else if (val.includes('Premium (₹4,999')) {
+    highlight.innerHTML = '<i class="fa-solid fa-circle-check"></i> 👑 VIP Cover: Dental Care Kit + 10 Free Consultations + 3 Free Cleanings + 30% Treatment Off';
+  } else {
+    highlight.innerHTML = '<i class="fa-solid fa-circle-check"></i> 👨‍👩‍👧‍👦 Whole Family Wellness: Pediatric + Adult Checkups & Alignment Screenings';
+  }
+};
+
+window.handlePlanEnrollSubmit = function(e) {
+  e.preventDefault();
+  const planSelect = document.getElementById('enrollPlanSelect');
+  const nameInput = document.getElementById('enrollMemberName');
+  const phoneInput = document.getElementById('enrollMemberPhone');
+  const emailInput = document.getElementById('enrollMemberEmail');
+  const familySelect = document.getElementById('enrollFamilyCount');
+  const addressInput = document.getElementById('enrollMemberAddress');
+  const paymentMode = document.querySelector('input[name="enrollPaymentMode"]:checked')?.value || 'UPI QR Payment';
+
+  const planName = planSelect?.value || 'Denticaa Prime+ (₹2,999/Yr)';
+  const memberName = nameInput?.value.trim() || 'New Member';
+  const memberPhone = phoneInput?.value.trim() || '';
+  const memberEmail = emailInput?.value.trim() || '';
+  const familyMembers = familySelect?.value || '1 Member';
+  const address = addressInput?.value.trim() || 'Jabalpur';
+
+  const tokenNum = 'MEM-' + Math.floor(1000 + Math.random() * 9000);
+  const today = new Date();
+  const startDate = today.toISOString().split('T')[0];
+  const nextYear = new Date(today);
+  nextYear.setFullYear(nextYear.getFullYear() + 1);
+  const expiryDate = nextYear.toISOString().split('T')[0];
+
+  // Save to CRM Store
+  if (window.denticaaCRM) {
+    window.denticaaCRM.saveLead({
+      id: tokenNum,
+      type: 'membership_plan',
+      patientName: memberName,
+      patientPhone: memberPhone,
+      patientEmail: memberEmail,
+      planName: planName,
+      planPrice: planName.includes('4,999') ? '₹4,999' : (planName.includes('2,999') ? '₹2,999' : '₹999'),
+      familyMembers: familyMembers,
+      address: address,
+      startDate: startDate,
+      expiryDate: expiryDate,
+      status: 'Active',
+      paymentMode: paymentMode,
+      source: 'Denticaa Membership Portal',
+      notes: `Registered online for ${planName}.`
+    });
+  }
+
+  // Send to Google Sheets / Webhook & Email
+  if (window.DENTICAA_WEBHOOK_URL) {
+    try {
+      fetch(window.DENTICAA_WEBHOOK_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          tokenNumber: tokenNum,
+          patientName: memberName,
+          patientPhone: memberPhone,
+          patientEmail: memberEmail,
+          treatment: `MEMBERSHIP PLAN: ${planName} (${familyMembers})`,
+          preferredDoctor: 'Dr. Kapil Jain & Dr. Anmoll Jain',
+          preferredDate: `Valid: ${startDate} to ${expiryDate}`,
+          timeSlot: 'Annual Membership Plan',
+          paymentMode: paymentMode,
+          status: 'Active',
+          message: `Address: ${address}. Plan: ${planName}. Members: ${familyMembers}.`
+        })
+      });
+    } catch(err) {
+      console.warn('Webhook dispatch offline:', err);
+    }
+  }
+
+  // Close form modal
+  closePlanEnrollModal();
+
+  // Show VIP Card modal
+  const successModal = document.getElementById('planSuccessModal');
+  const cardName = document.getElementById('cardMemberName');
+  const cardToken = document.getElementById('cardMemberToken');
+  const cardExpiry = document.getElementById('cardExpiryDate');
+  const cardBadge = document.getElementById('cardPlanBadge');
+  const waBtn = document.getElementById('cardWhatsAppBtn');
+
+  if (cardName) cardName.textContent = memberName;
+  if (cardToken) cardToken.textContent = tokenNum;
+  if (cardExpiry) cardExpiry.textContent = nextYear.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+  if (cardBadge) cardBadge.textContent = planName.includes('4,999') ? 'PREMIUM VIP' : (planName.includes('2,999') ? 'PRIME+' : 'PRIME');
+  
+  if (waBtn) {
+    const waText = encodeURIComponent(`Hello Dr. Kapil, I have registered for the *${planName}* with Membership ID *${tokenNum}*.\nName: ${memberName}\nPhone: ${memberPhone}\nPlease activate my card and dental care kit.`);
+    waBtn.href = `https://wa.me/917509194919?text=${waText}`;
+  }
+
+  if (successModal) successModal.style.display = 'flex';
+  document.getElementById('planEnrollForm')?.reset();
+};
+
+window.closePlanSuccessModal = function() {
+  const modal = document.getElementById('planSuccessModal');
+  if (modal) modal.style.display = 'none';
+};
+
+

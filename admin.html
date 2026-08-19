@@ -572,11 +572,11 @@
 
       <form id="authForm">
         <div class="auth-pass-wrap">
-          <input type="password" id="authPasswordInput" class="auth-input" placeholder="Enter Password" autocomplete="current-password" required>
-          <button type="button" class="auth-eye-btn" id="authToggleEye"><i class="fa-regular fa-eye"></i></button>
+          <input type="password" id="authPasswordInput" class="auth-input" placeholder="Enter Password" autocomplete="current-password" required autofocus>
+          <button type="button" class="auth-eye-btn" id="authToggleEye" aria-label="Toggle Password Visibility"><i class="fa-regular fa-eye"></i></button>
         </div>
-        <div class="auth-error" id="authErrorMsg">⚠️ Incorrect password. Please try again.</div>
-        <button type="submit" class="btn btn-gold btn-lg" style="width: 100%;">
+        <div class="auth-error" id="authErrorMsg" style="display: none; color: #E11D48; font-size: 0.84rem; font-weight: 700; margin-bottom: 12px;">⚠️ Incorrect password. Please try again.</div>
+        <button type="submit" class="btn btn-gold btn-lg" style="width: 100%; justify-content: center;">
           <i class="fa-solid fa-lock-open"></i> Unlock CRM Portal
         </button>
       </form>
@@ -618,7 +618,15 @@
     <!-- Tab Switcher -->
     <div class="crm-nav-tabs">
       <button class="crm-tab-btn active" id="tabBtnLeads" onclick="switchCRMTab('leads')">
-        <i class="fa-solid fa-users"></i> Patient Leads & Inquiries
+        <i class="fa-solid fa-users"></i> All Inquiries & Leads
+      </button>
+      <button class="crm-tab-btn" id="tabBtnMemberships" onclick="switchCRMTab('memberships')">
+        <i class="fa-solid fa-crown" style="color: var(--gold-primary);"></i> Membership Plans & Subscribers
+        <span id="badgeMembershipsCount" style="background: #D97706; color: #FFFFFF; font-size: 0.72rem; padding: 2px 8px; border-radius: 50px; margin-left: 6px; font-weight: 800;">3</span>
+      </button>
+      <button class="crm-tab-btn" id="tabBtnInternational" onclick="switchCRMTab('international')">
+        <i class="fa-solid fa-plane-departure" style="color: var(--gold-primary);"></i> International Clients (Dental Tourism)
+        <span id="badgeInternationalCount" style="background: #059669; color: #FFFFFF; font-size: 0.72rem; padding: 2px 8px; border-radius: 50px; margin-left: 6px; font-weight: 800;">3</span>
       </button>
       <button class="crm-tab-btn" id="tabBtnTransformations" onclick="switchCRMTab('transformations')">
         <i class="fa-solid fa-wand-magic-sparkles"></i> Smile Transformations Manager
@@ -683,6 +691,7 @@
               <option value="all">All Sources</option>
               <option value="form">Website Form</option>
               <option value="chatbot">AI Chatbot</option>
+              <option value="dental_tourism">✈️ Dental Tourism (Global)</option>
             </select>
 
             <select id="crmFilterDoctor" class="crm-select">
@@ -731,7 +740,159 @@
       </div>
     </section>
 
-    <!-- TAB 2: SMILE TRANSFORMATIONS CMS -->
+    <!-- TAB 2: INTERNATIONAL PATIENTS / DENTAL TOURISM CMS -->
+    <section id="crmTabInternational" style="display: none;">
+      <!-- Tourism KPI Cards -->
+      <div class="crm-stats-grid">
+        <div class="crm-stat-card" style="border-top: 3px solid #059669;">
+          <div class="crm-stat-icon" style="background: rgba(16, 185, 129, 0.15); color: #059669;"><i class="fa-solid fa-earth-americas"></i></div>
+          <div>
+            <div class="crm-stat-num" id="statInterTotal" style="color: #059669;">0</div>
+            <div class="crm-stat-label">Global Tourism Leads</div>
+          </div>
+        </div>
+
+        <div class="crm-stat-card" style="border-top: 3px solid var(--gold-primary);">
+          <div class="crm-stat-icon" style="background: var(--gold-subtle); color: var(--gold-dark);"><i class="fa-solid fa-plane-arrival"></i></div>
+          <div>
+            <div class="crm-stat-num" id="statInterActive">0</div>
+            <div class="crm-stat-label">Active Trip Plans</div>
+          </div>
+        </div>
+
+        <div class="crm-stat-card" style="border-top: 3px solid #6366F1;">
+          <div class="crm-stat-icon" style="background: rgba(99, 102, 241, 0.15); color: #6366F1;"><i class="fa-solid fa-passport"></i></div>
+          <div>
+            <div class="crm-stat-num" id="statInterCountries">0</div>
+            <div class="crm-stat-label">Countries Represented</div>
+          </div>
+        </div>
+
+        <div class="crm-stat-card" style="border-top: 3px solid #EC4899;">
+          <div class="crm-stat-icon" style="background: rgba(236, 72, 153, 0.15); color: #EC4899;"><i class="fa-solid fa-gem"></i></div>
+          <div>
+            <div class="crm-stat-num">70–80%</div>
+            <div class="crm-stat-label">Average Savings Offered</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tourism Leads Table Card -->
+      <div class="crm-main-card">
+        <div class="crm-filter-bar">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <div class="crm-badge-portal" style="background: #ECFDF5; color: #065F46; border: 1px solid #A7F3D0; font-size: 0.82rem; padding: 4px 12px;">
+              ✈️ International Patient Inquiries
+            </div>
+            <span style="font-size: 0.85rem; color: var(--text-muted);">Direct requests from USA, UK, Canada, Australia & Gulf</span>
+          </div>
+
+          <div class="crm-filter-group">
+            <button class="btn btn-outline btn-sm" id="btnExportInterCSV">
+              <i class="fa-solid fa-file-csv"></i> Export Global Leads
+            </button>
+          </div>
+        </div>
+
+        <div class="crm-table-wrap">
+          <table class="crm-table">
+            <thead>
+              <tr>
+                <th>Inquiry ID</th>
+                <th>Patient & Country</th>
+                <th>WhatsApp / Mobile</th>
+                <th>Email Address</th>
+                <th>Treatment Requested</th>
+                <th>Doctor</th>
+                <th>Travel Window</th>
+                <th>Status</th>
+                <th>Quick Actions</th>
+              </tr>
+            </thead>
+            <tbody id="crmInterTableBody">
+              <!-- Rendered by js/admin.js -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: ANNUAL MEMBERSHIP PLANS & SUBSCRIBERS -->
+    <section id="crmTabMemberships" style="display: none;">
+      <!-- KPI Stats -->
+      <div class="crm-stats-grid">
+        <div class="crm-stat-card">
+          <div class="crm-stat-icon" style="background: #FEF3C7; color: #D97706;"><i class="fa-solid fa-crown"></i></div>
+          <div>
+            <div class="crm-stat-num" id="statTotalMemberships">0</div>
+            <div class="crm-stat-label">Active Members</div>
+          </div>
+        </div>
+
+        <div class="crm-stat-card">
+          <div class="crm-stat-icon" style="background: #D1FAE5; color: #059669;"><i class="fa-solid fa-indian-rupee-sign"></i></div>
+          <div>
+            <div class="crm-stat-num" id="statMembershipRevenue">₹0</div>
+            <div class="crm-stat-label">Annual Plan Revenue</div>
+          </div>
+        </div>
+
+        <div class="crm-stat-card">
+          <div class="crm-stat-icon" style="background: #E0E7FF; color: #4338CA;"><i class="fa-solid fa-users"></i></div>
+          <div>
+            <div class="crm-stat-num" id="statFamilyCountCovered">0</div>
+            <div class="crm-stat-label">Family Lives Covered</div>
+          </div>
+        </div>
+
+        <div class="crm-stat-card">
+          <div class="crm-stat-icon" style="background: #FEE2E2; color: #DC2626;"><i class="fa-solid fa-clock-rotate-left"></i></div>
+          <div>
+            <div class="crm-stat-num" id="statExpiringSoonMembers">0</div>
+            <div class="crm-stat-label">Expiring in 30 Days</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Membership Card & Table -->
+      <div class="crm-main-card">
+        <div class="crm-table-header-row">
+          <div>
+            <h3 class="font-serif" style="font-size: 1.35rem; margin-bottom: 4px;">Annual Membership Directory</h3>
+            <p style="font-size: 0.88rem; color: var(--text-muted);">Track enrolled Prime, Prime+, Premium & Family Wellness members, validities, renewals, and kit issuance.</p>
+          </div>
+          <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+            <input type="text" id="crmMembershipSearchInput" class="crm-search-input" placeholder="🔍 Search member name, phone, token..." oninput="renderMembershipDirectory()">
+            <button class="btn btn-outline btn-sm" id="btnExportMemberCSV" onclick="exportMembershipsCSV()">
+              <i class="fa-solid fa-file-arrow-down"></i> Export Members CSV
+            </button>
+          </div>
+        </div>
+
+        <div class="crm-table-wrap">
+          <table class="crm-table">
+            <thead>
+              <tr>
+                <th>Membership ID</th>
+                <th>Member Name & Contact</th>
+                <th>Plan Enrolled</th>
+                <th>Family Covered</th>
+                <th>Activation Date</th>
+                <th>Expiry Date</th>
+                <th>Status & Validity</th>
+                <th>Payment Status</th>
+                <th>Quick Actions</th>
+              </tr>
+            </thead>
+            <tbody id="crmMembershipsTableBody">
+              <!-- Rendered dynamically by js/admin.js -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 4: SMILE TRANSFORMATIONS CMS -->
     <section id="crmTabTransformations" style="display: none;">
       <div class="crm-main-card">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; flex-wrap: wrap; gap: 14px;">

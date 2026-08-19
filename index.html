@@ -150,9 +150,10 @@
           <ul class="nav-menu" id="navMenu">
             <li><a href="#doctors" class="nav-link"><i class="fa-regular fa-user"></i> Meet Doctors</a></li>
             <li><a href="#treatments" class="nav-link">Services</a></li>
+            <li><a href="#membership-plans" class="nav-link" style="color: #059669; font-weight: 700;"><i class="fa-solid fa-crown" style="color: var(--gold-primary);"></i> Plans</a></li>
+            <li><a href="dental-tourism-india.html" class="nav-link" style="color: var(--gold-primary); font-weight: 700;"><i class="fa-solid fa-plane-departure"></i> Dental Tourism</a></li>
             <li><a href="#transformations" class="nav-link">Transformations</a></li>
-            <li><a href="#booking" class="nav-link">Book Consultation</a></li>
-            <li><a href="#location" class="nav-link">Location & Hours</a></li>
+            <li><a href="#location" class="nav-link">Location</a></li>
           </ul>
         </nav>
 
@@ -178,37 +179,43 @@
     </div>
   </header>
 
-  <!-- 3. HERO SECTION -->
-  <section class="hero-section" id="home">
+  <!-- 3. HERO SECTION (Image 1 Style with Live Operational Badges) -->
+  <section class="hero" id="hero">
     <div class="container">
       <div class="hero-grid">
         <!-- Hero Content -->
-        <div>
-          <div class="section-tag">
-            <i class="fa-solid fa-sparkles"></i> Advanced Aesthetic & Laser Dentistry
+        <div class="hero-content">
+          <!-- Micro-Trust Pill -->
+          <div class="hero-eyebrow">
+            <span class="eyebrow-line"></span>
+            <span class="eyebrow-text">ADVANCED AESTHETIC & LASER DENTISTRY</span>
           </div>
+
           <h1 class="hero-title font-serif">
             Crafting Radiant Smiles with Modern Precision Dentistry
           </h1>
-          <p class="hero-subtitle">
+
+          <p class="hero-desc">
             Experience painless, gentle dental care delivered under one roof by <strong>Dr. Kapil Jain</strong> (BDS, MDS Orthodontics & Clear Aligners) & <strong>Dr. Mrs Anmoll Jain</strong> (BDS Cosmetic Dental Surgeon). Combining precision dental loupes, invisible aligners, and Swiss laser technology.
           </p>
 
-          <div class="hero-cta-group">
+          <!-- CTAs -->
+          <div class="hero-actions">
             <a href="#booking" class="btn btn-gold btn-lg">
-              <i class="fa-solid fa-calendar-check"></i> BOOK CONSULTATION
+              <i class="fa-regular fa-calendar-check"></i> BOOK CONSULTATION
             </a>
-            <a href="#doctors" class="btn btn-dark btn-lg">
-              MEET OUR DOCTORS →
+            <a href="#doctors" class="btn btn-outline btn-lg">
+              MEET OUR DOCTORS &rarr;
             </a>
           </div>
 
+          <!-- Quick Contact -->
           <div class="hero-quick-contact">
             <a href="tel:9575216655" class="hero-contact-link">
               <i class="fa-solid fa-phone" style="color: var(--gold-primary);"></i> Call: 9575216655
             </a>
-            <a href="https://wa.me/917509194919?text=Hello%20Denticaa,%20I%20would%20like%20to%20inquire%20about%20a%20dental%20appointment" target="_blank" class="hero-contact-link" style="color: #34D399;">
-              <i class="fa-brands fa-whatsapp"></i> WhatsApp Inquiry
+            <a href="https://wa.me/917509194919?text=Hello%20Denticaa,%20I%20would%20like%20to%20book%20an%20appointment" target="_blank" class="hero-contact-link">
+              <i class="fa-brands fa-whatsapp" style="color: #25D366;"></i> WhatsApp: 7509194919
             </a>
           </div>
         </div>
@@ -228,8 +235,8 @@
 
           <!-- Clinic Interior Photo -->
           <img
-            src="images/clinic-interior.png"
-            alt="Denticaa Dental Clinic Interior — Modern dental treatment room in Wright Town, Jabalpur"
+            src="images/clinic-operatory-chair.jpg"
+            alt="Denticaa Dental Clinic Operatory — Modern dental treatment room in Wright Town, Jabalpur"
             class="hero-clinic-photo"
             loading="eager"
           />
@@ -318,7 +325,7 @@
         <!-- Left: Portrait Photo Frame with Gold Badges -->
         <div class="doctor-portrait-frame">
           <img
-            src="images/dr-kapil-jain.png"
+            src="images/dr-kapil-jain.png?v=3.0"
             alt="Dr. Kapil Jain — MDS Orthodontics Specialist at Denticaa Jabalpur"
             class="doctor-portrait-img"
             loading="lazy"
@@ -620,7 +627,149 @@
     </div>
   </section>
 
-  <!-- 7. TRANSFORMATIONS / SMILE GALLERY -->
+  <!-- 7. DENTICAA ANNUAL MEMBERSHIP & FAMILY WELLNESS PLANS -->
+  <section class="section-padding plans-section" id="membership-plans">
+    <div class="container">
+      <div class="section-title-wrap" style="text-align: center; max-width: 800px; margin: 0 auto 36px;">
+        <div class="section-tag" style="background: #ECFDF5; color: #065F46; border: 1px solid #A7F3D0;">
+          <i class="fa-solid fa-crown" style="color: var(--gold-primary);"></i> Exclusive Annual Care Programs
+        </div>
+        <h2 class="section-title font-serif">Denticaa Prime & Family Wellness Plans</h2>
+        <p class="section-subtitle">
+          Affordable, year-round dental health for you and your family. Enjoy complimentary dental care kits, free consultations, teeth cleaning sessions, and up to 30% savings on all dental treatments.
+        </p>
+      </div>
+
+      <div class="plans-grid">
+        
+        <!-- Plan 1: Denticaa Prime Membership (₹999) -->
+        <div class="plan-card">
+          <div class="plan-ribbon">Starter Care</div>
+          <div class="plan-poster-wrap" onclick="openPlanPosterModal('images/plans/plan-prime-999.jpg', 'Denticaa Prime Membership (₹999/Yr)')">
+            <img src="images/plans/plan-prime-999.jpg" alt="Denticaa Prime Membership at just ₹999 for a Year" class="plan-poster-img" loading="lazy">
+            <span class="plan-poster-zoom-hint"><i class="fa-solid fa-expand"></i> View Poster</span>
+          </div>
+          <div class="plan-body">
+            <h3 class="plan-name">Denticaa Prime Membership</h3>
+            <div class="plan-price-wrap">
+              <span class="plan-price">₹999</span>
+              <span class="plan-period">/ Year</span>
+            </div>
+            <ul class="plan-features-list">
+              <li><i class="fa-solid fa-circle-check"></i> <span><strong>Complimentary</strong> Dental Care Kit</span></li>
+              <li><i class="fa-solid fa-circle-check"></i> <span><strong>2 Free</strong> Dental Consultations & Oral Check-ups</span></li>
+              <li><i class="fa-solid fa-circle-check"></i> <span><strong>1 Free</strong> Teeth Cleaning Session <em style="font-size:0.75rem; color:#64748B;">(Not for Tobacco chewers)</em></span></li>
+              <li><i class="fa-solid fa-circle-check"></i> <span><strong>20% Flat Discount</strong> on all Dental Treatments</span></li>
+              <li><i class="fa-solid fa-circle-check"></i> <span><strong>10% Exclusive Discount</strong> for Family Members</span></li>
+            </ul>
+            <div class="plan-card-footer">
+              <button type="button" onclick="openPlanEnrollModal('Denticaa Prime (₹999/Yr)', '₹999')" class="btn btn-gold plan-btn">
+                <i class="fa-solid fa-crown"></i> Join Prime Plan
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Plan 2: Denticaa Prime+ Membership (₹2999) - Featured -->
+        <div class="plan-card plan-card--featured">
+          <div class="plan-ribbon" style="background: linear-gradient(135deg, #10B981, #059669);">⭐ Best Value</div>
+          <div class="plan-poster-wrap" onclick="openPlanPosterModal('images/plans/plan-prime-plus-2999.jpg', 'Denticaa Prime+ Membership (₹2999/Yr)')">
+            <img src="images/plans/plan-prime-plus-2999.jpg" alt="Denticaa Prime+ Membership at just ₹2999 for a Year" class="plan-poster-img" loading="lazy">
+            <span class="plan-poster-zoom-hint"><i class="fa-solid fa-expand"></i> View Poster</span>
+          </div>
+          <div class="plan-body">
+            <h3 class="plan-name">Denticaa Prime+ Membership</h3>
+            <div class="plan-price-wrap">
+              <span class="plan-price">₹2,999</span>
+              <span class="plan-period">/ Year</span>
+            </div>
+            <ul class="plan-features-list">
+              <li><i class="fa-solid fa-circle-check"></i> <span><strong>Complimentary</strong> Dental Care Kit</span></li>
+              <li><i class="fa-solid fa-circle-check"></i> <span><strong>5 Free</strong> Dental Consultations & Oral Check-ups</span></li>
+              <li><i class="fa-solid fa-circle-check"></i> <span><strong>2 Free</strong> Teeth Cleaning Sessions <em style="font-size:0.75rem; color:#64748B;">(Not for Tobacco chewers)</em></span></li>
+              <li><i class="fa-solid fa-circle-check"></i> <span><strong>25% Flat Discount</strong> on all Dental Treatments</span></li>
+              <li><i class="fa-solid fa-circle-check"></i> <span><strong>15% Exclusive Discount</strong> for Family Members</span></li>
+            </ul>
+            <div class="plan-card-footer">
+              <button type="button" onclick="openPlanEnrollModal('Denticaa Prime+ (₹2,999/Yr)', '₹2,999')" class="btn btn-gold plan-btn" style="box-shadow: 0 4px 15px rgba(197, 155, 39, 0.4);">
+                <i class="fa-solid fa-gem"></i> Join Prime+ Plan
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Plan 3: Denticaa Premium Membership (₹4999) -->
+        <div class="plan-card">
+          <div class="plan-ribbon" style="background: linear-gradient(135deg, #6366F1, #4338CA);">👑 VIP Plan</div>
+          <div class="plan-poster-wrap" onclick="openPlanPosterModal('images/plans/plan-premium-4999.jpg', 'Denticaa Premium Membership (₹4999/Yr)')">
+            <img src="images/plans/plan-premium-4999.jpg" alt="Denticaa Premium Membership at just ₹4999 for a Year" class="plan-poster-img" loading="lazy">
+            <span class="plan-poster-zoom-hint"><i class="fa-solid fa-expand"></i> View Poster</span>
+          </div>
+          <div class="plan-body">
+            <h3 class="plan-name">Denticaa Premium Membership</h3>
+            <div class="plan-price-wrap">
+              <span class="plan-price">₹4,999</span>
+              <span class="plan-period">/ Year</span>
+            </div>
+            <ul class="plan-features-list">
+              <li><i class="fa-solid fa-circle-check"></i> <span><strong>Complimentary</strong> Dental Care Kit</span></li>
+              <li><i class="fa-solid fa-circle-check"></i> <span><strong>10 Free</strong> Dental Consultations & Oral Check-ups</span></li>
+              <li><i class="fa-solid fa-circle-check"></i> <span><strong>3 Free</strong> Teeth Cleaning Sessions <em style="font-size:0.75rem; color:#64748B;">(Not for Tobacco chewers)</em></span></li>
+              <li><i class="fa-solid fa-circle-check"></i> <span><strong>30% Flat Discount</strong> on all Dental Treatments</span></li>
+              <li><i class="fa-solid fa-circle-check"></i> <span><strong>20% Exclusive Discount</strong> for Family Members</span></li>
+            </ul>
+            <div class="plan-card-footer">
+              <button type="button" onclick="openPlanEnrollModal('Denticaa Premium (₹4,999/Yr)', '₹4,999')" class="btn btn-gold plan-btn">
+                <i class="fa-solid fa-shield-halved"></i> Join Premium Plan
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Plan 4: Denticaa Family Wellness Plan (₹999) -->
+        <div class="plan-card">
+          <div class="plan-ribbon" style="background: linear-gradient(135deg, #EC4899, #BE185D);">👨‍👩‍👧‍👦 Whole Family</div>
+          <div class="plan-poster-wrap" onclick="openPlanPosterModal('images/plans/plan-family-wellness.jpg', 'Denticaa Family Wellness Plan')">
+            <img src="images/plans/plan-family-wellness.jpg" alt="Denticaa Family Wellness Starting at Just ₹999 for 01 Year" class="plan-poster-img" loading="lazy">
+            <span class="plan-poster-zoom-hint"><i class="fa-solid fa-expand"></i> View Poster</span>
+          </div>
+          <div class="plan-body">
+            <h3 class="plan-name">Denticaa Family Wellness</h3>
+            <div class="plan-price-wrap">
+              <span class="plan-price" style="font-size:1.35rem;">From ₹999</span>
+              <span class="plan-period">/ 01 Year</span>
+            </div>
+            <ul class="plan-features-list">
+              <li><i class="fa-solid fa-circle-check"></i> <span><strong>Complete Family Oral Cover</strong> (Parents, Kids & Seniors)</span></li>
+              <li><i class="fa-solid fa-circle-check"></i> <span><strong>Child Dental Screenings</strong> (Cavity & Alignment Check)</span></li>
+              <li><i class="fa-solid fa-circle-check"></i> <span><strong>Preventative Consultations</strong> for Whole Household</span></li>
+              <li><i class="fa-solid fa-circle-check"></i> <span><strong>Priority Direct Scheduling</strong> with Dr. Kapil & Dr. Anmoll</span></li>
+              <li><i class="fa-solid fa-circle-check"></i> <span><strong>Wright Town Clinic</strong> Dedicated Reception Care</span></li>
+            </ul>
+            <div class="plan-card-footer">
+              <button type="button" onclick="openPlanEnrollModal('Denticaa Family Wellness (₹999/Yr)', 'From ₹999')" class="btn btn-gold plan-btn">
+                <i class="fa-solid fa-people-roof"></i> Get Family Plan
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Quick Info / Terms Strip -->
+      <div style="margin-top: 28px; background: #FFFFFF; border: 1px solid var(--gold-border, #E5D5BA); border-radius: 14px; padding: 16px 22px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px;">
+        <div style="display: flex; align-items: center; gap: 10px; font-size: 0.86rem; color: #475569;">
+          <i class="fa-solid fa-circle-info" style="color: var(--gold-primary); font-size: 1.1rem;"></i>
+          <span>All plans valid for 365 days from activation date. Cleaning benefits applicable for non-tobacco stains. Instant membership card issued at clinic.</span>
+        </div>
+        <a href="tel:9575216655" style="color: var(--gold-dark); font-weight: 700; text-decoration: none; font-size: 0.88rem; display: flex; align-items: center; gap: 6px;">
+          <i class="fa-solid fa-phone"></i> Membership Helpline: 9575216655
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. TRANSFORMATIONS / SMILE GALLERY -->
   <section class="section-padding transformations-section" id="transformations">
     <div class="container">
       <div class="section-title-wrap">
@@ -1102,7 +1251,7 @@
       </div>
 
       <div class="footer-bottom" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px; padding-top: 24px; border-top: 1px solid rgba(255, 255, 255, 0.08);">
-        <p style="margin: 0;">&copy; 2026 Denticaa Dental Care. All rights reserved.</p>
+        <p style="margin: 0;">&copy; 2026 Denticaa Dental Care. All rights reserved. • <a href="admin.html" target="_blank" style="color: var(--text-muted); text-decoration: none; font-size: 0.82rem;"><i class="fa-solid fa-lock" style="font-size: 0.72rem;"></i> Staff Portal</a></p>
         <p style="margin: 0; font-size: 0.84rem; color: var(--text-muted);">
           Crafted & Engineered with Precision by <a href="https://aaceautomation.com" target="_blank" rel="noopener" style="color: var(--gold-light); font-weight: 600; text-decoration: none; border-bottom: 1px dotted var(--gold-light);">AACE Automation</a>
         </p>
@@ -1127,6 +1276,170 @@
       <i class="fa-solid fa-wand-magic-sparkles"></i>
       <span class="ai-pulse-dot"></span>
     </button>
+  </div>
+
+  <!-- PLAN POSTER LIGHTBOX MODAL -->
+  <div id="planPosterModal" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); z-index: 10000; align-items: center; justify-content: center; padding: 20px;" onclick="if(event.target===this) closePlanPosterModal()">
+    <div style="position: relative; max-width: 480px; width: 100%; background: #0F141C; border-radius: 18px; border: 2px solid var(--gold-primary); overflow: hidden; box-shadow: 0 25px 60px rgba(0,0,0,0.6); text-align: center;">
+      <button onclick="closePlanPosterModal()" style="position: absolute; top: 12px; right: 12px; background: rgba(0,0,0,0.7); color: #FFF; border: 1px solid rgba(255,255,255,0.3); width: 36px; height: 36px; border-radius: 50%; cursor: pointer; font-size: 1.1rem; z-index: 10; display: flex; align-items: center; justify-content: center;">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <img id="planPosterModalImg" src="" alt="Denticaa Plan Poster" style="width: 100%; max-height: 75vh; object-fit: contain; display: block; background: #0F141C;">
+      <div style="padding: 14px 20px; background: #0F141C; border-top: 1px solid rgba(197, 155, 39, 0.3); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+        <span id="planPosterModalTitle" style="color: #FFFFFF; font-weight: 700; font-size: 0.95rem;"></span>
+        <a id="planPosterWhatsAppBtn" href="https://wa.me/917509194919" target="_blank" class="btn btn-gold btn-sm" style="background: #25D366; border-color: #25D366; color: #FFF;">
+          <i class="fa-brands fa-whatsapp"></i> Inquire on WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- DENTICAA ANNUAL MEMBERSHIP ENROLLMENT MODAL -->
+  <div id="planEnrollModal" style="display: none; position: fixed; inset: 0; background: rgba(15, 20, 28, 0.82); backdrop-filter: blur(10px); z-index: 10000; align-items: center; justify-content: center; padding: 20px; overflow-y: auto;" onclick="if(event.target===this) closePlanEnrollModal()">
+    <div style="position: relative; max-width: 580px; width: 100%; background: #FFFFFF; border-radius: 24px; border: 2px solid var(--gold-primary); overflow: hidden; box-shadow: 0 25px 70px rgba(0,0,0,0.4); margin: auto;">
+      
+      <!-- Modal Header -->
+      <div style="background: linear-gradient(135deg, #0F141C, #1E293B); color: #FFFFFF; padding: 24px 28px; position: relative; border-bottom: 2px solid var(--gold-primary);">
+        <button type="button" onclick="closePlanEnrollModal()" style="position: absolute; top: 16px; right: 16px; background: rgba(255,255,255,0.1); color: #FFF; border: 1px solid rgba(255,255,255,0.2); width: 34px; height: 34px; border-radius: 50%; cursor: pointer; font-size: 1.1rem; display: flex; align-items: center; justify-content: center;">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(197, 155, 39, 0.2); border: 1px solid var(--gold-primary); color: var(--gold-light); font-size: 0.74rem; font-weight: 800; padding: 3px 12px; border-radius: 50px; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 8px;">
+          <i class="fa-solid fa-crown"></i> 365 Days Dental Wellness
+        </div>
+        <h3 style="font-family: var(--font-serif); font-size: 1.45rem; margin: 0; color: #FFFFFF;" id="planModalHeaderTitle">Enroll in Denticaa Membership</h3>
+        <p style="margin: 4px 0 0; font-size: 0.82rem; color: #94A3B8;">Fill your details below to activate your instant annual membership card & discounts.</p>
+      </div>
+
+      <!-- Enrollment Form -->
+      <form id="planEnrollForm" style="padding: 24px 28px;" onsubmit="handlePlanEnrollSubmit(event)">
+        
+        <!-- Plan Selection Box -->
+        <div style="background: #F8FAFC; border: 1.5px solid var(--gold-border); border-radius: 14px; padding: 14px 16px; margin-bottom: 18px;">
+          <label style="display: block; font-size: 0.8rem; font-weight: 700; color: var(--text-dark); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px;">Selected Annual Plan *</label>
+          <select id="enrollPlanSelect" style="width: 100%; border: 1.5px solid #CBD5E1; border-radius: 10px; padding: 10px 14px; font-weight: 700; color: #0F172A; font-size: 0.95rem; background: #FFFFFF;" required onchange="updateEnrollPlanUI()">
+            <option value="Denticaa Prime (₹999/Yr)">Denticaa Prime Membership — ₹999 / Year</option>
+            <option value="Denticaa Prime+ (₹2,999/Yr)" selected>Denticaa Prime+ Membership — ₹2,999 / Year (⭐ Best Value)</option>
+            <option value="Denticaa Premium (₹4,999/Yr)">Denticaa Premium Membership — ₹4,999 / Year (👑 VIP Cover)</option>
+            <option value="Denticaa Family Wellness (₹999/Yr)">Denticaa Family Wellness Plan — Starting at ₹999 / Year</option>
+          </select>
+          <div id="enrollPlanBadgeHighlight" style="margin-top: 8px; font-size: 0.8rem; color: #059669; font-weight: 700; display: flex; align-items: center; gap: 6px;">
+            <i class="fa-solid fa-circle-check"></i> Includes Complimentary Dental Care Kit + 2 Free Cleanings + 25% Treatment Off
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px;">
+          <div>
+            <label style="display: block; font-size: 0.82rem; font-weight: 700; color: #334155; margin-bottom: 4px;">Primary Member Name *</label>
+            <input type="text" id="enrollMemberName" style="width: 100%; border: 1.5px solid #CBD5E1; border-radius: 10px; padding: 10px 12px; font-size: 0.9rem;" placeholder="Full Name" required>
+          </div>
+          <div>
+            <label style="display: block; font-size: 0.82rem; font-weight: 700; color: #334155; margin-bottom: 4px;">WhatsApp / Phone *</label>
+            <input type="tel" id="enrollMemberPhone" style="width: 100%; border: 1.5px solid #CBD5E1; border-radius: 10px; padding: 10px 12px; font-size: 0.9rem;" placeholder="10-digit number" required>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px;">
+          <div>
+            <label style="display: block; font-size: 0.82rem; font-weight: 700; color: #334155; margin-bottom: 4px;">Email Address</label>
+            <input type="email" id="enrollMemberEmail" style="width: 100%; border: 1.5px solid #CBD5E1; border-radius: 10px; padding: 10px 12px; font-size: 0.9rem;" placeholder="name@domain.com">
+          </div>
+          <div>
+            <label style="display: block; font-size: 0.82rem; font-weight: 700; color: #334155; margin-bottom: 4px;">Family Members Count</label>
+            <select id="enrollFamilyCount" style="width: 100%; border: 1.5px solid #CBD5E1; border-radius: 10px; padding: 10px 12px; font-size: 0.9rem; background:#FFF;">
+              <option value="1 Member (Individual)">1 Member (Individual)</option>
+              <option value="2 Members (Couple)">2 Members (Couple)</option>
+              <option value="3 Members" selected>3 Members (Small Family)</option>
+              <option value="4 Members">4 Members (Family 4)</option>
+              <option value="5+ Members">5+ Members (Joint Family)</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="margin-bottom: 16px;">
+          <label style="display: block; font-size: 0.82rem; font-weight: 700; color: #334155; margin-bottom: 4px;">Residential Area / Address in Jabalpur</label>
+          <input type="text" id="enrollMemberAddress" style="width: 100%; border: 1.5px solid #CBD5E1; border-radius: 10px; padding: 10px 12px; font-size: 0.9rem;" placeholder="e.g. Wright Town / Napier Town / Civil Lines">
+        </div>
+
+        <div style="margin-bottom: 20px;">
+          <label style="display: block; font-size: 0.82rem; font-weight: 700; color: #334155; margin-bottom: 6px;">Payment / Activation Preference</label>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+            <label style="display: flex; align-items: center; gap: 8px; border: 1.5px solid #E2E8F0; padding: 10px 12px; border-radius: 10px; cursor: pointer; font-size: 0.84rem; font-weight: 600;">
+              <input type="radio" name="enrollPaymentMode" value="UPI QR Payment" checked>
+              <span><i class="fa-solid fa-qrcode" style="color: var(--gold-primary);"></i> UPI QR / GPay</span>
+            </label>
+            <label style="display: flex; align-items: center; gap: 8px; border: 1.5px solid #E2E8F0; padding: 10px 12px; border-radius: 10px; cursor: pointer; font-size: 0.84rem; font-weight: 600;">
+              <input type="radio" name="enrollPaymentMode" value="Pay at Clinic Reception">
+              <span><i class="fa-solid fa-hospital-user" style="color: #059669;"></i> Pay at Clinic</span>
+            </label>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-gold btn-lg" style="width: 100%; justify-content: center; font-size: 1rem; padding: 14px;">
+          <i class="fa-solid fa-crown"></i> Activate Membership & Generate Card
+        </button>
+
+        <p style="text-align: center; font-size: 0.76rem; color: #64748B; margin: 10px 0 0;">
+          🔒 Instant digital card issued. Official plastic membership card & care kit collected at Denticaa clinic reception.
+        </p>
+      </form>
+    </div>
+  </div>
+
+  <!-- MEMBERSHIP SUCCESS VIP CARD MODAL -->
+  <div id="planSuccessModal" style="display: none; position: fixed; inset: 0; background: rgba(15, 20, 28, 0.88); backdrop-filter: blur(10px); z-index: 10001; align-items: center; justify-content: center; padding: 20px; overflow-y: auto;" onclick="if(event.target===this) closePlanSuccessModal()">
+    <div style="position: relative; max-width: 500px; width: 100%; background: #0F141C; border-radius: 24px; border: 2.5px solid var(--gold-primary); overflow: hidden; box-shadow: 0 25px 80px rgba(0,0,0,0.7); margin: auto; text-align: center; color: #FFF;">
+      <button onclick="closePlanSuccessModal()" style="position: absolute; top: 16px; right: 16px; background: rgba(255,255,255,0.15); color: #FFF; border: 1px solid rgba(255,255,255,0.25); width: 34px; height: 34px; border-radius: 50%; cursor: pointer; font-size: 1.1rem; display: flex; align-items: center; justify-content: center;">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <!-- Digital VIP Gold Card Preview -->
+      <div style="padding: 30px 24px 20px;">
+        <div style="display: inline-block; background: rgba(16, 185, 129, 0.2); border: 1px solid #10B981; color: #34D399; font-size: 0.8rem; font-weight: 800; padding: 4px 14px; border-radius: 50px; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 12px;">
+          🎉 Membership Enrolled Successfully
+        </div>
+        <h3 style="font-family: var(--font-serif); font-size: 1.55rem; color: #FFFFFF; margin: 0 0 6px;">Welcome to Denticaa Prime!</h3>
+        <p style="color: #94A3B8; font-size: 0.84rem; margin: 0 0 20px;">Your 365-day annual dental care benefits are now registered.</p>
+
+        <!-- The Gold Luxury Card -->
+        <div style="background: linear-gradient(135deg, #1E293B, #0F172A); border: 2px solid var(--gold-primary); border-radius: 18px; padding: 22px; text-align: left; position: relative; box-shadow: 0 15px 35px rgba(0,0,0,0.5); overflow: hidden;">
+          <div style="position: absolute; top: -20px; right: -20px; width: 120px; height: 120px; background: radial-gradient(circle, rgba(197, 155, 39, 0.2), transparent 70%); border-radius: 50%;"></div>
+          
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <i class="fa-solid fa-crown" style="color: var(--gold-primary); font-size: 1.4rem;"></i>
+              <span style="font-family: var(--font-serif); font-weight: 800; font-size: 1.15rem; color: #FFF; letter-spacing: 1px;">DENTICAA</span>
+            </div>
+            <span id="cardPlanBadge" style="background: var(--gold-primary); color: #0F141C; font-weight: 800; font-size: 0.72rem; padding: 3px 10px; border-radius: 50px; text-transform: uppercase;">PRIME+</span>
+          </div>
+
+          <div style="margin-bottom: 14px;">
+            <div style="font-size: 0.7rem; color: #94A3B8; text-transform: uppercase; letter-spacing: 0.5px;">Member Name</div>
+            <div id="cardMemberName" style="font-size: 1.15rem; font-weight: 700; color: #F8FAFC;">Prakash Vardhan Verma</div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; font-size: 0.8rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 12px;">
+            <div>
+              <span style="color: #94A3B8; font-size: 0.7rem; display: block;">Membership Token</span>
+              <strong id="cardMemberToken" style="color: var(--gold-light); font-size: 0.95rem;">MEM-4029</strong>
+            </div>
+            <div>
+              <span style="color: #94A3B8; font-size: 0.7rem; display: block;">Valid Until (365 Days)</span>
+              <strong id="cardExpiryDate" style="color: #34D399; font-size: 0.88rem;">19 Aug 2027</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- Action CTAs -->
+        <div style="margin-top: 22px; display: flex; flex-direction: column; gap: 10px;">
+          <a id="cardWhatsAppBtn" href="https://wa.me/917509194919" target="_blank" class="btn btn-gold btn-lg" style="width: 100%; justify-content: center; background: #25D366; border-color: #25D366; color: #FFF;">
+            <i class="fa-brands fa-whatsapp"></i> Confirm & Collect Kit on WhatsApp
+          </a>
+          <button onclick="closePlanSuccessModal()" class="btn btn-outline btn-sm" style="color: #94A3B8; border-color: rgba(255,255,255,0.2); width: 100%; justify-content: center;">
+            Done
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 
   <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
