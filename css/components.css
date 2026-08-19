@@ -63,27 +63,32 @@
   box-shadow: var(--shadow-subtle);
 }
 
+.navbar .container {
+  max-width: 1360px;
+  width: 100%;
+}
+
 .nav-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 6px 0;
   min-height: 84px;
-  gap: 16px;
+  gap: 14px;
 }
 
 .brand-logo {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   text-decoration: none;
   flex-shrink: 0;
 }
 
 .brand-logo-img {
-  height: 56px;
+  height: 52px;
   width: auto;
-  max-width: 220px;
+  max-width: 200px;
   object-fit: contain;
   mix-blend-mode: multiply;
   transition: var(--transition);
@@ -102,18 +107,18 @@
 
 .brand-name {
   font-family: var(--font-serif);
-  font-size: 1.7rem;
+  font-size: 1.55rem;
   font-weight: 800;
   color: var(--text-dark);
-  letter-spacing: 1.5px;
+  letter-spacing: 1.2px;
   line-height: 1;
 }
 
 .brand-tagline {
-  font-size: 0.68rem;
+  font-size: 0.65rem;
   color: var(--gold-dark);
   font-weight: 700;
-  letter-spacing: 1.4px;
+  letter-spacing: 1.2px;
   text-transform: uppercase;
   white-space: nowrap;
   line-height: 1.2;
@@ -122,28 +127,26 @@
 .nav-menu {
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: 15px;
   list-style: none;
   margin: 0;
   padding: 0;
+  flex-shrink: 0;
 }
 
 .nav-link {
   text-decoration: none;
   color: var(--text-dark);
-  font-size: 0.88rem;
+  font-size: 0.86rem;
   font-weight: 600;
   transition: var(--transition);
   position: relative;
-  padding: 8px 2px;
+  padding: 6px 2px;
   display: inline-flex;
   align-items: center;
   gap: 5px;
   line-height: 1;
   white-space: nowrap;
-}
-  gap: 6px;
-  line-height: 1;
 }
 
 .nav-link:hover,
@@ -170,7 +173,14 @@
 .nav-actions {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.nav-actions .btn-sm {
+  white-space: nowrap;
+  padding: 8px 16px;
+  font-size: 0.84rem;
   flex-shrink: 0;
 }
 
