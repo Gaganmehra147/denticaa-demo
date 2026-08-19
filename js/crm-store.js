@@ -311,16 +311,17 @@ class DenticaaCRMStore {
       patientEmail: leadData.patientEmail || '',
       patientAge: leadData.patientAge || 'Not specified',
       patientGender: leadData.patientGender || 'Not specified',
-      treatment: leadData.treatment || 'General Consultation',
+      treatment: leadData.treatment || (leadData.planName ? `MEMBERSHIP: ${leadData.planName}` : 'General Consultation'),
       preferredDoctor: leadData.preferredDoctor || 'Any Available Specialist',
       preferredDate: leadData.preferredDate || new Date().toISOString().split('T')[0],
       timeSlot: leadData.timeSlot || 'Morning (10:30 AM - 01:30 PM)',
       message: leadData.message || '',
       chatTranscript: leadData.chatTranscript || null,
       status: leadData.status || 'New',
-      source: leadData.source || (leadData.type === 'chatbot' ? 'Denticaa Multilingual AI Chatbot' : 'Website Consultation Form'),
+      source: leadData.source || (leadData.type === 'chatbot' ? 'Denticaa Multilingual AI Chatbot' : (leadData.type === 'membership_plan' ? 'Denticaa Membership Portal' : 'Website Consultation Form')),
       createdAt: new Date().toISOString(),
-      notes: leadData.notes || ''
+      notes: leadData.notes || '',
+      ...leadData
     };
 
     leads.unshift(newLead);

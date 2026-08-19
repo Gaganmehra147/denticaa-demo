@@ -634,43 +634,58 @@ window.closePlanPosterModal = function() {
 
 // Plan Enrollment Modal Handlers
 window.openPlanEnrollModal = function(planName, price) {
-  const modal = document.getElementById('planEnrollModal');
-  const select = document.getElementById('enrollPlanSelect');
-  if (select && planName) {
-    for (let opt of select.options) {
-      if (opt.value.includes(planName) || planName.includes(opt.value)) {
-        select.value = opt.value;
-        break;
+  try {
+    const modal = document.getElementById('planEnrollModal');
+    const select = document.getElementById('enrollPlanSelect');
+    if (select && planName) {
+      for (let i = 0; i < select.options.length; i++) {
+        const opt = select.options[i];
+        if (opt.value.toLowerCase().includes(planName.toLowerCase()) || planName.toLowerCase().includes(opt.value.toLowerCase())) {
+          select.selectedIndex = i;
+          break;
+        }
       }
     }
+    if (typeof window.updateEnrollPlanUI === 'function') {
+      window.updateEnrollPlanUI();
+    }
+    if (modal) {
+      modal.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+  } catch(err) {
+    console.error('Error opening plan modal:', err);
   }
-  updateEnrollPlanUI();
-  if (modal) modal.style.display = 'flex';
 };
 
 window.closePlanEnrollModal = function() {
   const modal = document.getElementById('planEnrollModal');
   if (modal) modal.style.display = 'none';
+  document.body.style.overflow = '';
 };
 
 window.updateEnrollPlanUI = function() {
-  const select = document.getElementById('enrollPlanSelect');
-  const highlight = document.getElementById('enrollPlanBadgeHighlight');
-  if (!select || !highlight) return;
-  const val = select.value;
-  if (val.includes('Prime (₹999')) {
-    highlight.innerHTML = '<i class="fa-solid fa-circle-check"></i> Includes Dental Care Kit + 2 Free Consultations + 1 Free Cleaning + 20% Treatment Off';
-  } else if (val.includes('Prime+ (₹2,999')) {
-    highlight.innerHTML = '<i class="fa-solid fa-circle-check"></i> ⭐ Best Value: Dental Care Kit + 5 Free Consultations + 2 Free Cleanings + 25% Treatment Off';
-  } else if (val.includes('Premium (₹4,999')) {
-    highlight.innerHTML = '<i class="fa-solid fa-circle-check"></i> 👑 VIP Cover: Dental Care Kit + 10 Free Consultations + 3 Free Cleanings + 30% Treatment Off';
-  } else {
-    highlight.innerHTML = '<i class="fa-solid fa-circle-check"></i> 👨‍👩‍👧‍👦 Whole Family Wellness: Pediatric + Adult Checkups & Alignment Screenings';
+  try {
+    const select = document.getElementById('enrollPlanSelect');
+    const highlight = document.getElementById('enrollPlanBadgeHighlight');
+    if (!select || !highlight) return;
+    const val = select.value;
+    if (val.includes('Prime (₹999') || val.includes('999')) {
+      highlight.innerHTML = '<i class="fa-solid fa-circle-check"></i> Includes Dental Care Kit + 2 Free Consultations + 1 Free Cleaning + 20% Treatment Off';
+    } else if (val.includes('Prime+ (₹2,999') || val.includes('2,999')) {
+      highlight.innerHTML = '<i class="fa-solid fa-circle-check"></i> ⭐ Best Value: Dental Care Kit + 5 Free Consultations + 2 Free Cleanings + 25% Treatment Off';
+    } else if (val.includes('Premium (₹4,999') || val.includes('4,999')) {
+      highlight.innerHTML = '<i class="fa-solid fa-circle-check"></i> 👑 VIP Cover: Dental Care Kit + 10 Free Consultations + 3 Free Cleanings + 30% Treatment Off';
+    } else {
+      highlight.innerHTML = '<i class="fa-solid fa-circle-check"></i> 👨‍👩‍👧‍👦 Whole Family Wellness: Pediatric + Adult Checkups & Alignment Screenings';
+    }
+  } catch(e) {
+    console.warn(e);
   }
 };
 
 window.handlePlanEnrollSubmit = function(e) {
-  e.preventDefault();
+  if (e && e.preventDefault) e.preventDefault();
   const planSelect = document.getElementById('enrollPlanSelect');
   const nameInput = document.getElementById('enrollMemberName');
   const phoneInput = document.getElementById('enrollMemberPhone');
@@ -693,6 +708,8 @@ window.handlePlanEnrollSubmit = function(e) {
   nextYear.setFullYear(nextYear.getFullYear() + 1);
   const expiryDate = nextYear.toISOString().split('T')[0];
 
+  const planPrice = planName.includes('4,999') ? '₹4,999' : (planName.includes('2,999') ? '₹2,999' : '₹999');
+
   // Save to CRM Store
   if (window.denticaaCRM) {
     window.denticaaCRM.saveLead({
@@ -702,7 +719,7 @@ window.handlePlanEnrollSubmit = function(e) {
       patientPhone: memberPhone,
       patientEmail: memberEmail,
       planName: planName,
-      planPrice: planName.includes('4,999') ? '₹4,999' : (planName.includes('2,999') ? '₹2,999' : '₹999'),
+      planPrice: planPrice,
       familyMembers: familyMembers,
       address: address,
       startDate: startDate,
@@ -761,13 +778,17 @@ window.handlePlanEnrollSubmit = function(e) {
     waBtn.href = `https://wa.me/917509194919?text=${waText}`;
   }
 
-  if (successModal) successModal.style.display = 'flex';
+  if (successModal) {
+    successModal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
   document.getElementById('planEnrollForm')?.reset();
 };
 
 window.closePlanSuccessModal = function() {
   const modal = document.getElementById('planSuccessModal');
   if (modal) modal.style.display = 'none';
+  document.body.style.overflow = '';
 };
 
 
