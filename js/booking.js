@@ -68,7 +68,7 @@ _Sent from Denticaa Dental Clinic Official Website_`
           </p>
           <div style="display: flex; flex-direction: column; gap: 12px;">
             <a href="${whatsappUrl}" target="_blank" class="btn btn-whatsapp" style="width: 100%; font-size: 1.05rem;">
-              <i class="fa-brands fa-whatsapp"></i> Confirm on WhatsApp (+91 95752 16655)
+              <i class="fa-brands fa-whatsapp"></i> Confirm on WhatsApp
             </a>
             <button id="closeConfirmModal" class="btn btn-navy" style="width: 100%;">
               Close Window

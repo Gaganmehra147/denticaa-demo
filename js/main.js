@@ -164,7 +164,7 @@ function showCelebratoryBookingModal(details) {
   const upiIntentUrl = `upi://pay?pa=${clinicUpiId}&pn=${encodeURIComponent(clinicUpiName)}&am=${consultationFee}&cu=INR&tn=${encodeURIComponent(`Denticaa Token ${tokenNumber}`)}`;
   const qrCodeUrl = 'images/denticaa-clinic-qr.png';
 
-  const docPhone = details.doctor.includes('Anmoll') ? '919575552165' : '917509194919';
+  const docPhone = '917509194919';
 
   const modalHTML = `
     <div id="appointmentSuccessModal" style="position: fixed; inset: 0; background: rgba(10, 15, 24, 0.88); backdrop-filter: blur(14px); z-index: 10003; display: flex; align-items: center; justify-content: center; padding: 16px; animation: modalFadeIn 0.35s ease; overflow-y: auto;">

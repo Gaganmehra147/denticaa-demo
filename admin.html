@@ -600,7 +600,10 @@
         </a>
 
         <!-- Controls -->
-        <div style="display: flex; align-items: center; gap: 10px;">
+        <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+          <a href="https://www.clinicia.com/calendar/book?u=kapiljain" target="_blank" rel="noopener" class="btn btn-gold btn-sm" style="background: linear-gradient(135deg, #2563EB, #1D4ED8); border-color: #2563EB; color: #FFFFFF; font-weight: 700;">
+            <i class="fa-solid fa-calendar-check"></i> Clinicia Appointments ↗
+          </a>
           <a href="index.html" class="btn btn-outline btn-sm">
             <i class="fa-solid fa-globe"></i> View Website
           </a>
@@ -616,7 +619,7 @@
   <main class="container" style="flex: 1;">
     
     <!-- Tab Switcher -->
-    <div class="crm-nav-tabs">
+    <div class="crm-nav-tabs" style="display: flex; gap: 10px; flex-wrap: wrap; align-items: center;">
       <button class="crm-tab-btn active" id="tabBtnLeads" onclick="switchCRMTab('leads')">
         <i class="fa-solid fa-users"></i> All Inquiries & Leads
       </button>
@@ -631,10 +634,28 @@
       <button class="crm-tab-btn" id="tabBtnTransformations" onclick="switchCRMTab('transformations')">
         <i class="fa-solid fa-wand-magic-sparkles"></i> Smile Transformations Manager
       </button>
+      <a href="https://www.clinicia.com/calendar/book?u=kapiljain" target="_blank" rel="noopener" class="crm-tab-btn" style="text-decoration: none; color: #1E40AF; border-color: #93C5FD; background: #EFF6FF; margin-left: auto;">
+        <i class="fa-solid fa-calendar-days" style="color: #2563EB;"></i> Clinicia Calendar ↗
+      </a>
     </div>
 
     <!-- TAB 1: PATIENT LEADS & INQUIRIES -->
     <section id="crmTabLeads">
+      <!-- Clinicia Integration Quick Bar -->
+      <div style="background: linear-gradient(135deg, #0F172A, #1E293B); border: 1px solid var(--gold-border); border-radius: var(--radius-lg); padding: 14px 20px; margin-bottom: 22px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.15);">
+        <div style="display: flex; align-items: center; gap: 14px;">
+          <div style="width: 42px; height: 42px; border-radius: 10px; background: rgba(37, 99, 235, 0.2); border: 1px solid #3B82F6; color: #60A5FA; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">
+            <i class="fa-solid fa-calendar-check"></i>
+          </div>
+          <div>
+            <div style="color: #FFFFFF; font-weight: 700; font-size: 0.92rem;">Dr. Kapil Jain — Clinicia Calendar & Direct Bookings</div>
+            <div style="color: #94A3B8; font-size: 0.78rem;">Manage live chair slots, patient appointments, and daily OPD on Clinicia</div>
+          </div>
+        </div>
+        <a href="https://www.clinicia.com/calendar/book?u=kapiljain" target="_blank" rel="noopener" class="btn btn-gold btn-sm">
+          <i class="fa-solid fa-arrow-up-right-from-square"></i> Open Clinicia Software
+        </a>
+      </div>
       <!-- KPI Stats -->
       <div class="crm-stats-grid">
         <div class="crm-stat-card">

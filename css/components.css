@@ -1915,8 +1915,8 @@
 
 .plans-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 22px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
   margin-top: 36px;
 }
 
@@ -1967,7 +1967,7 @@
 .plan-poster-wrap {
   position: relative;
   width: 100%;
-  height: 280px;
+  height: 290px;
   overflow: hidden;
   background: #F8FAFC;
   cursor: pointer;
@@ -2018,7 +2018,7 @@
 
 .plan-name {
   font-family: var(--font-serif);
-  font-size: 1.22rem;
+  font-size: 1.25rem;
   color: #0F172A;
   margin-bottom: 6px;
   line-height: 1.3;
