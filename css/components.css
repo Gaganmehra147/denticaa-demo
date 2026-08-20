@@ -295,18 +295,128 @@
   color: var(--gold-dark);
 }
 
-/* Clinic Photo & Badges */
+/* Clinic Photo Carousel & Badges */
 .hero-image-wrap {
   position: relative;
 }
 
-.hero-clinic-photo {
+.hero-carousel-container {
+  position: relative;
   width: 100%;
   height: 480px;
-  object-fit: cover;
   border-radius: var(--radius-lg);
+  overflow: hidden;
   box-shadow: var(--shadow-hover);
   border: 1px solid var(--border-subtle);
+  background: var(--bg-elevated, #f8f6f2);
+}
+
+.hero-carousel-track {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-carousel-slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1), transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: scale(1.03);
+}
+
+.hero-carousel-slide.active {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+  z-index: 1;
+}
+
+.hero-clinic-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  display: block;
+}
+
+/* Nav Buttons */
+.hero-carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 4;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(18, 22, 28, 0.55);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0.8;
+  transition: all 0.25s ease;
+  font-size: 0.95rem;
+}
+
+.hero-carousel-btn:hover {
+  opacity: 1;
+  background: rgba(18, 22, 28, 0.85);
+  transform: translateY(-50%) scale(1.1);
+  color: var(--gold-light, #E5C478);
+  border-color: var(--gold, #C5A059);
+}
+
+.hero-carousel-btn--prev {
+  left: 14px;
+}
+
+.hero-carousel-btn--next {
+  right: 14px;
+}
+
+/* Indicators / Dots */
+.hero-carousel-dots {
+  position: absolute;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(18, 22, 28, 0.45);
+  padding: 6px 12px;
+  border-radius: 20px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.hero-carousel-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.45);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.3s ease;
+}
+
+.hero-carousel-dot.active {
+  width: 24px;
+  border-radius: 10px;
+  background: var(--gold, #C5A059);
 }
 
 .hero-badge {
@@ -321,6 +431,7 @@
   align-items: center;
   gap: 12px;
   box-shadow: var(--shadow-card);
+  z-index: 5;
 }
 
 .hero-badge--top {

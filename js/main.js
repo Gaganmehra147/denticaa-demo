@@ -462,7 +462,113 @@ _Thank you for choosing Denticaa Dental Care._`
   closeFinalBtn?.addEventListener('click', closeModal);
 }
 
+// Hero Carousel Auto-play & Navigation
+function initHeroCarousel() {
+  const container = document.getElementById('heroCarousel');
+  if (!container) return;
+
+  const slides = container.querySelectorAll('.hero-carousel-slide');
+  const dots = container.querySelectorAll('.hero-carousel-dot');
+  const prevBtn = container.querySelector('.hero-carousel-btn--prev');
+  const nextBtn = container.querySelector('.hero-carousel-btn--next');
+
+  if (slides.length === 0) return;
+
+  let currentIndex = 0;
+  let autoPlayTimer = null;
+
+  function showSlide(index) {
+    if (index >= slides.length) index = 0;
+    if (index < 0) index = slides.length - 1;
+
+    slides.forEach((slide, i) => {
+      if (i === index) {
+        slide.classList.add('active');
+      } else {
+        slide.classList.remove('active');
+      }
+    });
+
+    dots.forEach((dot, i) => {
+      if (i === index) {
+        dot.classList.add('active');
+      } else {
+        dot.classList.remove('active');
+      }
+    });
+
+    currentIndex = index;
+  }
+
+  function nextSlide() {
+    showSlide(currentIndex + 1);
+  }
+
+  function prevSlide() {
+    showSlide(currentIndex - 1);
+  }
+
+  function startAutoPlay() {
+    stopAutoPlay();
+    autoPlayTimer = setInterval(nextSlide, 4500);
+  }
+
+  function stopAutoPlay() {
+    if (autoPlayTimer) {
+      clearInterval(autoPlayTimer);
+      autoPlayTimer = null;
+    }
+  }
+
+  nextBtn?.addEventListener('click', (e) => {
+    e.preventDefault();
+    nextSlide();
+    startAutoPlay();
+  });
+
+  prevBtn?.addEventListener('click', (e) => {
+    e.preventDefault();
+    prevSlide();
+    startAutoPlay();
+  });
+
+  dots.forEach((dot, idx) => {
+    dot.addEventListener('click', (e) => {
+      e.preventDefault();
+      showSlide(idx);
+      startAutoPlay();
+    });
+  });
+
+  container.addEventListener('mouseenter', stopAutoPlay);
+  container.addEventListener('mouseleave', startAutoPlay);
+
+  // Touch Swipe Support
+  let touchStartX = 0;
+  let touchEndX = 0;
+
+  container.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+  }, { passive: true });
+
+  container.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    if (touchStartX - touchEndX > 40) {
+      nextSlide();
+      startAutoPlay();
+    } else if (touchEndX - touchStartX > 40) {
+      prevSlide();
+      startAutoPlay();
+    }
+  }, { passive: true });
+
+  startAutoPlay();
+}
+
 document.addEventListener('DOMContentLoaded', () => {
+  // Initialize Hero Carousel
+  initHeroCarousel();
+
   // 5. Sticky Navbar Scroll Effect
   const navbar = document.getElementById('mainNavbar') || document.querySelector('.navbar');
   window.addEventListener('scroll', () => {
