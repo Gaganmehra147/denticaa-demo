@@ -262,9 +262,13 @@
     overflow: visible;
   }
 
-  .hero-clinic-photo {
-    height: 280px;
+  .hero-carousel-container {
+    height: 300px;
     border-radius: var(--radius-md);
+  }
+
+  .hero-clinic-photo {
+    height: 100%;
   }
 
   /* Floating badges bounded within screen bounds */
@@ -690,8 +694,8 @@
     font-size: 1.85rem;
   }
 
-  .hero-clinic-photo {
-    height: 250px;
+  .hero-carousel-container {
+    height: 240px;
   }
 
   .doctor-portrait-img {
