@@ -565,9 +565,15 @@ function initHeroCarousel() {
   startAutoPlay();
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  // Initialize Hero Carousel
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', () => {
+    initHeroCarousel();
+  });
+} else {
   initHeroCarousel();
+}
+
+document.addEventListener('DOMContentLoaded', () => {
 
   // 5. Sticky Navbar Scroll Effect
   const navbar = document.getElementById('mainNavbar') || document.querySelector('.navbar');
